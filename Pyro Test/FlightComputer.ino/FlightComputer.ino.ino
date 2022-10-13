@@ -3,25 +3,52 @@
 #include <WebServer.h>
 #include <Wire.h>
 #include "Adafruit_BMP280.h"
-#include "MPU9250.h"
+// #include "MPU9250.h"
 #include "KalmanFilter.h"
+
+#include "FS.h"
+#include "SD.h"
+#include "SPI.h"
+
+#include <Preferences.h>
+
+
+void appendFile(fs::FS &fs, const char * path, String message){
+    Serial.printf("Appending to file: %s\n", path);
+
+    File file = fs.open(path, FILE_APPEND);
+    if(!file){
+        Serial.println("Failed to open file for appending");
+        return;
+    }
+    if(file.print(message)){
+        Serial.println("Message appended");
+    } else {
+        Serial.println("Append failed");
+    }
+    file.close();
+}
+
 
 // =============================================
 // ===          MISC Global Vars             ===
 // =============================================
 
 //Timers Vars
+unsigned long loggingMillis = 0;
+unsigned long loggingMillisInterval = 0;
 unsigned long previousMillis = 0;
 unsigned long previousMillis2 = 0;
 unsigned long landprev = 0;
 unsigned long currentMillis;
-bool launch = 0;
+unsigned long ledblinkMillis = 0;
+bool launch = true;
 bool pyro = false;
 bool pyroFired = false;
 bool landed = false;
 bool ABORT = false;
 int lcc = 0; // land check coutner
-float fallr = -0.02;
+float fallr = -0.5;
 int adelay = 100; //ms
 
 
@@ -30,13 +57,15 @@ int adelay = 100; //ms
 //           Pin set-up
 // =================================
 
-int pyroPin = 16;
+int pyroPin = 23;
+int greenPin = 13;
+int redPin = 12;
 
 // =============================================
 // ===              MPU Vars                 ===
 // =============================================
 
-MPU9250 accelgyro(i2c0, 0x68);
+// MPU9250 accelgyro(i2c0, 0x68);
 
 int16_t ax, ay, az;
 int16_t gx, gy, gz;
@@ -51,6 +80,16 @@ bool TurnOnZI = false;
 
 bool XnegMD, XposMD, YnegMD, YposMD, ZnegMD, ZposMD;
 
+ // ================================================================
+// ===                         TIMERS                            ===
+// ================================================================
+
+
+hw_timer_t *My_timer = NULL;
+void IRAM_ATTR onTimer()
+{
+//digitalWrite(greenPin, LOW);
+}
 
 // =================================
 //           Barometer
@@ -58,24 +97,49 @@ bool XnegMD, XposMD, YnegMD, YposMD, ZnegMD, ZposMD;
 
 Adafruit_BMP280 bmp280;
 KalmanFilter pressureKalmanFilter(1, 1, 0.01);
-const float sealvl = 1020;
+const float sealvl = 1008;
 static float alt = 0;
 float est_alt;
 float lastAlt = 0;
 float temperature;
 float pascal = 0;
 float base_alt;
+bool sdon = true;
 
 
 void setup() 
 {
   Serial.begin(9600); // opens serial port, sets data rate to 115200 bps
+  pinMode(greenPin, OUTPUT);
+  pinMode(redPin, OUTPUT);
+  pinMode(5, OUTPUT);
+  
+  // digitalWrite(pyroPin, HIGH); //FIRE!
+
+  //Timers 
+  My_timer = timerBegin(0, 80, true);
+  timerAttachInterrupt(My_timer, &onTimer, true);
+  timerAlarmWrite(My_timer, 12000000, true);
+  timerAlarmEnable(My_timer);
   //Initialize MPU
+  
   //initializeMPU(); 
+  
   //Initialize Barometer
   initializeBMP();
+  
   //Initialize SD card reader
+  
   //initializeSD();
+  if(!SD.begin(5)){
+      Serial.println("Card Mount Failed");
+      sdon = false;
+  }
+  if(sdon) {
+    appendFile(SD, "/logs.txt", "\n\nFLIGHT COMPUTER ON");
+    loggingMillis = millis();
+  }
+    
 }
  
 
@@ -84,6 +148,22 @@ void setup()
 // ================================================================
 void loop() 
 {
+
+  if((millis() - loggingMillisInterval) > 200) {
+    loggingMillisInterval = millis();
+    
+    if(sdon) {
+      appendFile(SD, "/logs.txt", "\n");
+      appendFile(SD, "/logs.txt", String(millis()-loggingMillis));
+      appendFile(SD, "/logs.txt", " - Alt: ");
+      appendFile(SD, "/logs.txt", String(alt));
+      
+      appendFile(SD, "/logs.txt", "\n");
+      appendFile(SD, "/logs.txt", String(millis()-loggingMillis));
+      appendFile(SD, "/logs.txt", " - Pres: ");
+      appendFile(SD, "/logs.txt", String(pascal));
+    }
+  }
   
   if (launch == false && pyro == false && landed == false)  
   {
@@ -108,7 +188,6 @@ void loop()
   
   //getAccMotion();
   getAlt();
-  delay(5000);
 
   //Apogee detection algorithm
    if (est_alt - lastAlt <= fallr && pyro == false && launch == true && pyroFired == false)
@@ -118,6 +197,11 @@ void loop()
       delay(adelay);
       getAlt();
       Serial.println("Point 1");
+      if(sdon) {
+        appendFile(SD, "/logs.txt", "\n");
+        appendFile(SD, "/logs.txt", String(millis()-loggingMillis));
+        appendFile(SD, "/logs.txt", " - Point 1");
+      }
 
       if (est_alt - lastAlt <= fallr) 
       {
@@ -127,6 +211,11 @@ void loop()
         delay(adelay);
         getAlt();
         Serial.println("Point 2");
+        if(sdon) {
+          appendFile(SD, "/logs.txt", "\n");
+          appendFile(SD, "/logs.txt", String(millis()-loggingMillis));
+          appendFile(SD, "/logs.txt", " - Point 2");
+        }
 
         if (est_alt - lastAlt <= fallr)
         {
@@ -134,7 +223,16 @@ void loop()
           //Store time of Apogee Pyro Fire
           //Fire Pyros!
           pyro = true;
+          if((millis() - ledblinkMillis) > 750) {
+            ledblinkMillis = millis();
+            digitalWrite(redPin, !digitalRead(redPin));
+          }
           Serial.println("Point 3");
+          if(sdon) {
+            appendFile(SD, "/logs.txt", "\n");
+            appendFile(SD, "/logs.txt", String(millis()-loggingMillis));
+            appendFile(SD, "/logs.txt", " - Point 3");
+          }
         } 
         else 
         {
@@ -153,13 +251,21 @@ void loop()
 
 
   //Deploy Parachutes
-  if (pyro == true && launch == true && pyroFired == false && landed == false) 
+  if(pyro == true && launch == true && pyroFired == false && landed == false) 
   {
-
-    Serial.println("Fire charges");
-    digitalWrite(RLED, HIGH);
+    Serial.println("Fire charges!");
+    if(sdon) {
+      appendFile(SD, "/logs.txt", "\n");
+      appendFile(SD, "/logs.txt", String(millis()-loggingMillis));
+      appendFile(SD, "/logs.txt", " - Fire charges");
+    }
+    
+    digitalWrite(greenPin, !digitalRead(greenPin));
+    delay(500);
+    digitalWrite(greenPin, !digitalRead(greenPin));
+    
     digitalWrite(pyroPin, HIGH); //FIRE!
-    //pyroFired = true;
+    pyroFired = true;
   }
 
 
@@ -171,7 +277,7 @@ void loop()
 void initializeMPU() 
 {
   Wire.begin(0x76);
-  int status = accelgyro.begin();
+  int status = 0; // accelgyro.begin();
   if (!status)
   {} 
   //set filter to filter noise
@@ -208,11 +314,12 @@ void initializeBMP()
 
 void getAlt()
 {
-  alt = bmp280.readAltitude(1020);
+  alt = bmp280.readAltitude(sealvl);
   Serial.println(alt);
   pascal = bmp280.readPressure();
   Serial.println(pascal);
   est_alt = pressureKalmanFilter.updateEstimate(alt);
+  Serial.println(est_alt);
 }
 
 
@@ -277,7 +384,7 @@ void loop() {
   }
   delay(5000);          
 }
-*/
+
 /***************************************************************************
   This is a library for the BMP280 humidity, temperature & pressure sensor
   Designed specifically to work with the Adafruit BMP280 Breakout
@@ -345,4 +452,5 @@ void loop() {
 
     Serial.println();
     delay(2000);
-}*/
+}
+*/

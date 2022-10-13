@@ -1,3 +1,4 @@
+/*
 #include "BarometerInterface.h"
 
 BMP280_DEV bmp;
@@ -38,3 +39,4 @@ float BarometerInterface::printData()
 {
   
 }
+*/

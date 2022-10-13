@@ -1,3 +1,4 @@
+/*
 #ifndef BAROMETERINTERFACE_H
 #define BAROMETERINTERFACE_H
 #include <BMP280_DEV.h>
@@ -5,9 +6,6 @@
 class BarometerInterface
 {
 public:
-    /**
-     * Common barometer readings.
-     */
     typedef struct
     {
         float pressure;
@@ -43,3 +41,4 @@ protected:
 
 
 #endif
+*/

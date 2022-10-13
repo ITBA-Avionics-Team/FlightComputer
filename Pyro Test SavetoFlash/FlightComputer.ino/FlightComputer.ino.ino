@@ -1,4 +1,4 @@
-
+  
 #include <WiFi.h>
 #include <WebServer.h>
 #include <Wire.h>
@@ -6,183 +6,9 @@
 // #include "MPU9250.h"
 #include "KalmanFilter.h"
 
-// =============================================
-// ===          MISC Global Vars             ===
-// =============================================
-
-//Timers Vars
-unsigned long previousMillis = 0;
-unsigned long previousMillis2 = 0;
-unsigned long landprev = 0;
-unsigned long currentMillis;
-bool launch = 0;
-bool pyro = false;
-bool pyroFired = false;
-bool landed = false;
-bool ABORT = false;
-int lcc = 0; // land check coutner
-float fallr = -0.02;
-int adelay = 100; //ms
-
-
-
-// =================================
-//           Pin set-up
-// =================================
-
-int pyroPin = 16;
-int RLED = 12;
-
-// =============================================
-// ===              MPU Vars                 ===
-// =============================================
-
-// MPU9250 accelgyro(i2c0, 0x68);
-
-int16_t ax, ay, az;
-int16_t gx, gy, gz;
-int8_t threshold, count;
-
-double roll = 0.00;
-double pitch = 0.00;
-
-float temp;
-bool zero_detect;
-bool TurnOnZI = false;
-
-bool XnegMD, XposMD, YnegMD, YposMD, ZnegMD, ZposMD;
-
-
-// =================================
-//           Barometer
-// =================================
+#include <Preferences.h>
 
 Adafruit_BMP280 bmp280;
-KalmanFilter pressureKalmanFilter(1, 1, 0.01);
-const float sealvl = 1020;
-static float alt = 0;
-float est_alt;
-float lastAlt = 0;
-float temperature;
-float pascal = 0;
-float base_alt;
-
-
-void setup() 
-{
-  Serial.begin(9600); // opens serial port, sets data rate to 115200 bps
-  //Initialize MPU
-  //initializeMPU(); 
-  //Initialize Barometer
-  initializeBMP();
-  //Initialize SD card reader
-  //initializeSD();
-}
- 
-
- // ================================================================
-// ===                         MAIN LOOP                         ===
-// ================================================================
-void loop() 
-{
-  
-  if (launch == false && pyro == false && landed == false)  
-  {
-    //Green signal, everything ok (ground)
-  }
-  else if(launch == true && pyro == false && landed == false)
-  {
-    //Signal of launch
-  }
-  else if (landed == true) 
-  {
-    //Signal of landing
-  }
-
-  //=== Flight steps ===
-  //
-  //   Detect launch
-  //   Enable ABORT - for extreame tilt. ??
-  //   Detect Apogee
-  //   Fire Pyros
-  //   Flight Log
-  
-  //getAccMotion();
-  getAlt();
-  delay(5000);
-
-  //Apogee detection algorithm
-   if (est_alt - lastAlt <= fallr && pyro == false && launch == true && pyroFired == false)
-   {
-     //check for drop
-      //Store time of Apogee Trigger 1
-      delay(adelay);
-      getAlt();
-      Serial.println("Point 1");
-
-      if (est_alt - lastAlt <= fallr) 
-      {
-        //check for  drop
-        //Store time of Apogee Trigger 1
-
-        delay(adelay);
-        getAlt();
-        Serial.println("Point 2");
-
-        if (est_alt - lastAlt <= fallr)
-        {
-          //PASS 3
-          //Store time of Apogee Pyro Fire
-          //Fire Pyros!
-          pyro = true;
-          Serial.println("Point 3");
-        } 
-        else 
-        {
-          lastAlt = est_alt;
-        }
-      }
-      else 
-      {
-        lastAlt = est_alt;
-      }
-    }
-    else
-    {
-      lastAlt = est_alt;
-    }
-
-
-  //Deploy Parachutes
-  if (pyro == true && launch == true && pyroFired == false && landed == false) 
-  {
-
-    Serial.println("Fire charges");
-    digitalWrite(RLED, HIGH);
-    digitalWrite(pyroPin, HIGH); //FIRE!
-    //pyroFired = true;
-  }
-
-
-}
-// =================================
-//             MPU unit
-// =================================
-/*
-void initializeMPU() 
-{
-  Wire.begin(0x76);
-  int status = accelgyro.begin();
-  if (!status)
-  {} 
-  //set filter to filter noise
-  //ser thresholds
-  //set control LED pins
-}
-*/
-// ================================================================
-// ===                         BAROMETER                       ===
-// ================================================================
 
 void initializeBMP() 
 {
@@ -207,13 +33,269 @@ void initializeBMP()
   Serial.println(F("BMPInit1"));
 }
 
+
+
+// =============================================
+// ===          MISC Global Vars             ===
+// =============================================
+
+//Timers Vars
+unsigned long loggingMillis = 0;
+unsigned long loggingMillisInterval = 0;
+unsigned long previousMillis = 0;
+unsigned long previousMillis2 = 0;
+unsigned long landprev = 0;
+unsigned long currentMillis;
+unsigned long ledblinkMillis = 0;
+bool launch = true;
+bool pyro = false;
+bool pyroFired = false;
+bool landed = false;
+bool ABORT = false;
+int lcc = 0; // land check coutner
+float fallr = -0.5;
+int adelay = 100; //ms
+Preferences preferences;
+
+
+
+// =================================
+//           Pin set-up
+// =================================
+
+int pyroPin = 23;
+int greenPin = 13;
+int redPin = 12;
+
+// =============================================
+// ===              MPU Vars                 ===
+// =============================================
+
+// MPU9250 accelgyro(i2c0, 0x68);
+
+int16_t ax, ay, az;
+int16_t gx, gy, gz;
+int8_t threshold, count;
+uint16_t prefCounter = 0;
+
+double roll = 0.00;
+double pitch = 0.00;
+
+float temp;
+bool zero_detect;
+bool TurnOnZI = false;
+
+bool XnegMD, XposMD, YnegMD, YposMD, ZnegMD, ZposMD;
+
+ // ================================================================
+// ===                         TIMERS                            ===
+// ================================================================
+
+
+hw_timer_t *My_timer = NULL;
+void IRAM_ATTR onTimer()
+{
+//digitalWrite(greenPin, LOW);
+}
+
+// =================================
+//           Barometer
+// =================================
+
+KalmanFilter pressureKalmanFilter(1, 1, 0.01);
+const float sealvl = 1008;
+static float alt = 0;
+float est_alt;
+float lastAlt = 0;
+float temperature;
+float pascal = 0;
+float base_alt;
+
+
+void setup() 
+{
+  Serial.begin(9600); // opens serial port, sets data rate to 115200 bps
+  pinMode(greenPin, OUTPUT);
+  pinMode(redPin, OUTPUT);
+  pinMode(5, OUTPUT);
+  
+  // digitalWrite(pyroPin, HIGH); //FIRE!
+
+  //Timers 
+  My_timer = timerBegin(0, 80, true);
+  timerAttachInterrupt(My_timer, &onTimer, true);
+  timerAlarmWrite(My_timer, 12000000, true);
+  timerAlarmEnable(My_timer);
+  //Initialize MPU
+  
+  //initializeMPU(); 
+  
+  //Initialize Barometer
+  initializeBMP();
+  
+  //Initialize SD card reader
+  
+  //initializeSD();
+  preferences.begin("lanzamiento00", false);
+  preferences.putString(String(prefCounter++).c_str(), "\n\nFLIGHT COMPUTER ON");
+  preferences.putULong64("lognum", prefCounter - 1);
+    
+}
+ 
+
+ // ================================================================
+// ===                         MAIN LOOP                         ===
+// ================================================================
+void loop() 
+{
+
+  if((millis() - loggingMillisInterval) > 200) {
+    loggingMillisInterval = millis();
+    
+    String logs = "\n";
+    logs += String(millis()-loggingMillis);
+    logs += " - Alt: ";
+    logs += String(alt);
+    logs += "\n";
+    logs += String(millis()-loggingMillis);
+    logs += " - Pres: ";
+    logs += String(pascal);
+    preferences.putString(String(prefCounter++).c_str(), logs);
+    preferences.putULong64("lognum", prefCounter - 1);
+  }
+  
+  if (launch == false && pyro == false && landed == false)  
+  {
+    //Green signal, everything ok (ground)
+  }
+  else if(launch == true && pyro == false && landed == false)
+  {
+    //Signal of launch
+  }
+  else if (landed == true) 
+  {
+    //Signal of landing
+  }
+
+  //=== Flight steps ===
+  //
+  //   Detect launch
+  //   Enable ABORT - for extreame tilt. ??
+  //   Detect Apogee
+  //   Fire Pyros
+  //   Flight Log
+  
+  //getAccMotion();
+  getAlt();
+
+  //Apogee detection algorithm
+   if (est_alt - lastAlt <= fallr && pyro == false && launch == true && pyroFired == false)
+   {
+     //check for drop
+      //Store time of Apogee Trigger 1
+      delay(adelay);
+      getAlt();
+      Serial.println("Point 1");
+      String logs = "\n";
+      logs += String(millis()-loggingMillis);
+      logs += " - Point 1";
+      preferences.putString(String(prefCounter++).c_str(), logs);
+      preferences.putULong64("lognum", prefCounter - 1);
+
+      if (est_alt - lastAlt <= fallr) 
+      {
+        //check for  drop
+        //Store time of Apogee Trigger 1
+
+        delay(adelay);
+        getAlt();
+        Serial.println("Point 2");
+      String logs = "\n";
+      logs += String(millis()-loggingMillis);
+      logs += " - Point 2";
+      preferences.putString(String(prefCounter++).c_str(), logs);
+      preferences.putULong64("lognum", prefCounter - 1);
+
+        if (est_alt - lastAlt <= fallr)
+        {
+          //PASS 3
+          //Store time of Apogee Pyro Fire
+          //Fire Pyros!
+          pyro = true;
+          if((millis() - ledblinkMillis) > 750) {
+            ledblinkMillis = millis();
+            digitalWrite(redPin, !digitalRead(redPin));
+          }
+          Serial.println("Point 3");
+          String logs = "\n";
+          logs += String(millis()-loggingMillis);
+          logs += " - Point 3";
+          preferences.putString(String(prefCounter++).c_str(), logs);
+        } 
+        else 
+        {
+          lastAlt = est_alt;
+        }
+      }
+      else 
+      {
+        lastAlt = est_alt;
+      }
+    }
+    else
+    {
+      lastAlt = est_alt;
+    }
+
+
+  //Deploy Parachutes
+  if(pyro == true && launch == true && pyroFired == false && landed == false) 
+  {
+    Serial.println("Fire charges!");
+    
+    String logs = "\n";
+    logs += String(millis()-loggingMillis);
+    logs += " - Fire charges";
+    preferences.putString(String(prefCounter++).c_str(), logs);
+    
+    digitalWrite(greenPin, !digitalRead(greenPin));
+    delay(500);
+    digitalWrite(greenPin, !digitalRead(greenPin));
+    
+    digitalWrite(pyroPin, HIGH); //FIRE!
+    pyroFired = true;
+  }
+
+
+}
+// =================================
+//             MPU unit
+// =================================
+
+void initializeMPU() 
+{
+  Wire.begin(0x76);
+  int status = 0; // accelgyro.begin();
+  if (!status)
+  {} 
+  //set filter to filter noise
+  //ser thresholds
+  //set control LED pins
+}
+
+// ================================================================
+// ===                         BAROMETER                       ===
+// ================================================================
+
+
 void getAlt()
 {
-  alt = bmp280.readAltitude(1008);
+  alt = bmp280.readAltitude(sealvl);
   Serial.println(alt);
   pascal = bmp280.readPressure();
   Serial.println(pascal);
   est_alt = pressureKalmanFilter.updateEstimate(alt);
+  Serial.println(est_alt);
 }
 
 
@@ -278,7 +360,7 @@ void loop() {
   }
   delay(5000);          
 }
-*/
+
 /***************************************************************************
   This is a library for the BMP280 humidity, temperature & pressure sensor
   Designed specifically to work with the Adafruit BMP280 Breakout
@@ -346,4 +428,5 @@ void loop() {
 
     Serial.println();
     delay(2000);
-}*/
+}
+*/
