@@ -1,4 +1,4 @@
-#include "ContainerCommunicationModule.h"
+#include "CommunicationModule.h"
 #include "ElectromechanicalModule.h"
 #include "SensorModule.h"
 #include <stdint.h>
@@ -45,12 +45,12 @@ float latestAltitudes[ALTITUDE_LIST_LENGTH];
 uint8_t latestAltitudesIndex = 0;
 
 
-ContainerCommunicationModule communicationModule = ContainerCommunicationModule();
+CommunicationModule communicationModule = CommunicationModule();
 ElectromechanicalModule electromechanicalModule = ElectromechanicalModule();
 SensorModule sensorModule = SensorModule();
 
 
-// Sample result: '10000,ST,9999,42.30402,34.30402'
+// Sample result: 10000,ST,9999,42.30402,34.30402
 uint8_t* createTelemetryPacketStr(uint16_t packetCount, uint8_t currentState, float altitude, double gpsLat, double gpsLng) {
    
    uint8_t buffer[9];
@@ -143,7 +143,7 @@ void loop() {
 
           createTelemetryPacketStr(packetCount, currentState, altitude, gpsLat, gpsLng);
           storageModule.addToFlashData(telPacketString);
-          communicationModule.telemetryPacketQueue.add(telPacketString, TELEMETRY_PACKET_STRING_LENGTH);
+          communicationModule.sendTelemetryPacketToGround(telPacketString, TELEMETRY_PACKET_STRING_LENGTH);
 
           if (detectApogee(altitude, acceleration)){
             Serial.println("Apogee reached.");
