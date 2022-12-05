@@ -74,7 +74,7 @@ uint8_t* createTelemetryPacketStr(uint16_t packetCount, uint8_t currentState, fl
 void setup() {
   Serial.begin(9600);
   
-  storageModule.init(&currentState); // Retrieve state variable from EEPROM
+  storageModule.init(&currentState, STATE_STARTUP); // Retrieve state variable from EEPROM
   sensorModule.init();
   communicationModule.init();
   electromechanicalModule.init();
@@ -142,7 +142,7 @@ void loop() {
           double gpsLng = sensorModule.gps.location.lng();
 
           createTelemetryPacketStr(packetCount, currentState, altitude, gpsLat, gpsLng);
-          storageModule.addToFlashData(telPacketString);
+          storageModule.addTelemetryPacketToFlightLog(telPacketString);
           communicationModule.sendTelemetryPacketToGround(telPacketString, TELEMETRY_PACKET_STRING_LENGTH);
 
           if (detectApogee(altitude, acceleration)){
@@ -161,7 +161,7 @@ void loop() {
             double gpsLng = sensorModule.gps.location.lng();
 
             createTelemetryPacketStr(packetCount, currentState, altitude, gpsLat, gpsLng);
-            storageModule.addToFlashData(telPacketString);
+            storageModule.addTelemetryPacketToFlightLog(telPacketString);
             communicationModule.telemetryPacketQueue.add(telPacketString, TELEMETRY_PACKET_STRING_LENGTH);
 
             if (detectLanding(altitude, acceleration)){
@@ -193,7 +193,7 @@ void switchToState(int8_t newState) {
     currentState = newState;
   }
   Serial.println(currentState);
-  storageModule.saveToROM(CURRENT_STATE_EEPROM_ADDR, currentState);
+  storageModule.saveCurrentState(currentState);
   if (currentState == STATE_POST_APOGEE){
     Serial.println("Deploying parachute");
     electromechanicalModule.deployParachute();
