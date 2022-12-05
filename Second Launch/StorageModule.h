@@ -17,6 +17,7 @@ class StorageModule {
       } else {
         *currentState = previouslySavedState;
       }
+      Serial.println("Storage Module initialized.");
 
     }
 
