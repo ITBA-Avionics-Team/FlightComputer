@@ -1,4 +1,4 @@
-# Flight Software (FSW) v1
+# Ada Flight Computer v2
 
 ## Rerquirements to run the flight software
 - Arduino IDE
