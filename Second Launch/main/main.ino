@@ -1,15 +1,9 @@
+#include "Logger.h"
 #include "StorageModule.h"
 #include "CommunicationModule.h"
 #include "ElectromechanicalModule.h"
 #include "SensorModule.h"
 #include <stdint.h>
-#include <stdio.h>
-#include <Wire.h>
-#include <TimerOne.h>
-
-// External Component pins
-
-
 
 // Enums
 #define STATE_STARTUP 0
@@ -19,19 +13,19 @@
 
 
 // Telemetry packet related data
-#define TELEMETRY_PACKET_STRING_LENGTH 32
+#define TELEMETRY_PACKET_STRING_LENGTH 34
 
-static const uint8_t startupStr[2] = {'S', 'T'};
-static const uint8_t preApogeeStr[10] = {'P', 'R'};
-static const uint8_t postApogeeStr[10] = {'P', 'O'};
-static const uint8_t landedStr[10] = {'L', 'A'};
+static const char startupStr[2] = {'S', 'T'};
+static const char preApogeeStr[10] = {'P', 'R'};
+static const char postApogeeStr[10] = {'P', 'O'};
+static const char landedStr[10] = {'L', 'A'};
 
-uint8_t* STATE_STRING_ARRAY[4] = {startupStr, preApogeeStr, postApogeeStr, landedStr};
+const char* STATE_STRING_ARRAY[4] = {startupStr, preApogeeStr, postApogeeStr, landedStr};
 
 
 // State variables
 uint8_t currentState = STATE_STARTUP;
-uint8_t telPacketString[TELEMETRY_PACKET_STRING_LENGTH]; // Assumed null terminated
+char telPacketString[TELEMETRY_PACKET_STRING_LENGTH]; // Assumed null terminated
 unsigned long lastMilis = 0;
 
 
@@ -44,15 +38,14 @@ SensorModule sensorModule = SensorModule();
 void setup() {
   Serial.begin(9600);
   
-  storageModule.init(&currentState, STATE_STARTUP);
+  storageModule.init();
   sensorModule.init();
-  communicationModule.init();
+  communicationModule.init(storageModule);
   electromechanicalModule.init();
 
   lastMilis = millis();
 
-
-  switchToState(currentState);
+  switchToState(storageModule.loadCurrentState(STATE_STARTUP));
 }
 
 void loop() {
@@ -77,13 +70,13 @@ void loop() {
           double gpsLat = sensorModule.gps.location.lat();
           double gpsLng = sensorModule.gps.location.lng();
 
-          createTelemetryPacketStr(communicationModule.packetCount, currentState, altitude, gpsLat, gpsLng);
-          storageModule.addTelemetryPacketToFlightLog(telPacketString, communicationModule.packetCount);
+          createTelemetryPacketStr(communicationModule.packetCount, currentState, altitude, 0, 0);
+          storageModule.addTelemetryPacketToFlightLog(telPacketString);
           communicationModule.sendTelemetryPacketToGround(telPacketString, TELEMETRY_PACKET_STRING_LENGTH);
 
           if (detectApogee(altitude, acceleration)){
-            Serial.println("Apogee reached.");
-            Serial.println(altitude);
+            Logger::log("Apogee reached.");
+            Logger::debug("Altitude: " + String(altitude));
             switchToState(STATE_PRE_APOGEE);
           }
           lastMilis = currMillis;
@@ -96,9 +89,9 @@ void loop() {
             double gpsLat = sensorModule.gps.location.lat();
             double gpsLng = sensorModule.gps.location.lng();
 
-            createTelemetryPacketStr(pcommunicationModule.acketCount, currentState, altitude, gpsLat, gpsLng);
+            createTelemetryPacketStr(communicationModule.packetCount, currentState, altitude, 0, 0);
             storageModule.addTelemetryPacketToFlightLog(telPacketString);
-            communicationModule.telemetryPacketQueue.add(telPacketString, TELEMETRY_PACKET_STRING_LENGTH);
+            communicationModule.sendTelemetryPacketToGround(telPacketString, TELEMETRY_PACKET_STRING_LENGTH);
 
             if (detectLanding(altitude, acceleration)){
               Serial.println("Landed. :)");
@@ -113,8 +106,8 @@ void loop() {
             double gpsLat = sensorModule.gps.location.lat();
             double gpsLng = sensorModule.gps.location.lng();
 
-            createTelemetryPacketStr(communicationModule.packetCount, currentState, 0, gpsLat, gpsLng);
-            communicationModule.telemetryPacketQueue.add(telPacketString, TELEMETRY_PACKET_STRING_LENGTH);
+            createTelemetryPacketStr(communicationModule.packetCount, currentState, 0, 0, 0);
+            communicationModule.sendTelemetryPacketToGround(telPacketString, TELEMETRY_PACKET_STRING_LENGTH);
 
             lastMilis = currMillis;
         }
@@ -124,7 +117,7 @@ void loop() {
 
 void switchToState(int8_t newState) {
   currentState = newState;
-  Serial.println(currentState);
+  Logger::log("Switching to state: " + String(currentState));
   storageModule.saveCurrentState(currentState);
   if (currentState == STATE_POST_APOGEE){
     Serial.println("Deploying parachute");
@@ -132,35 +125,43 @@ void switchToState(int8_t newState) {
   }
 }
 
-function detectLaunch(float currAltitude, float currAccel) {
-
+bool detectLaunch(float currAltitude, float currAccel) {
+  Serial.println("Detecting launch...");
+  return true;
 }
 
-function detectApogee(float currAltitude, float currAccel) {
-
+bool detectApogee(float currAltitude, float currAccel) {
+  return false;
 }
 
-function detectLanding(float currAltitude, float currAccel) {
-
+bool detectLanding(float currAltitude, float currAccel) {
+  return false;
 }
 
 // Format is <PACKET_COUNT>,<STATE>,<ALTITUDE>,<GPS_LATITUDE>,<GPS_LONGITUDE>
 // Example result: 10000,ST,9999,42.30402,34.30402
-uint8_t* createTelemetryPacketStr(uint16_t packetCount, uint8_t currentState, float altitude, double gpsLat, double gpsLng) {
-   uint8_t buffer[9];
-   unsigned char precision = 1, latLngPrecision = 5, bufferPadding;
-   
-   itoa(packetCount, buffer, 10);
-   bufferPadding =  5 - strlen(buffer);
-   memcpy(telPacketString + bufferPadding, buffer, strlen(buffer));
-   telPacketString[5] = ',';
-   memcpy(telPacketString + 6, STATE_STRING_ARRAY[currentState], 2);
-   telPacketString[8] = ',';
-   dtostrf(altitude, 6, precision, telPacketString + 9);
-   telPacketString[15] = ',';
-   dtostrf(gpsLat, 8, latLngPrecision, telPacketString + 16);
-   telPacketString[24] = ',';
-   dtostrf(gpsLng, 8, latLngPrecision, telPacketString + 25);
-   telPacketString[33] = '\0';
-   return telPacketString;
+char* createTelemetryPacketStr(uint16_t packetCount, uint8_t currentState, float altitude, double gpsLat, double gpsLng) {
+  Logger::debug("Creating telemetry packet...");
+
+  sprintf(telPacketString, "%05d", packetCount);
+  
+  telPacketString[5] = ',';
+
+  memcpy(telPacketString + 6, STATE_STRING_ARRAY[currentState], 2);
+  
+  telPacketString[8] = ',';
+  
+  sprintf(telPacketString + 9, "%06.1f", altitude);
+  
+  telPacketString[15] = ',';
+  
+  sprintf(telPacketString + 16, "%08.5f", gpsLat);
+  
+  telPacketString[24] = ',';
+
+  sprintf(telPacketString + 25, "%08.5f", gpsLng);
+  
+  telPacketString[33] = '\0';
+  
+  return telPacketString;
 }

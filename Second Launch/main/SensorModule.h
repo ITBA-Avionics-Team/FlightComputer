@@ -1,6 +1,7 @@
-#include <SPI.h>
 #include <Adafruit_BMP280.h>
 #include "TinyGPS++.h"
+#include "KalmanFilter.h"
+
 
 //GPS pins
 #define GPS_RX 4
@@ -13,13 +14,13 @@
 class SensorModule {
   public:
   float bmpBasePressureHPa = 1008;
-  KalmanFilter pressureKalmanFilter(1, 1, 0.01);
+  KalmanFilter pressureKalmanFilter = KalmanFilter(1, 1, 0.01);
 
   TinyGPSPlus gps;
   Adafruit_BMP280 bmp280;
 
   void init() {
-    bmp280.begin(BMP_PIN)
+    bmp280.begin(BMP_PIN);
     bmp280.setSampling(Adafruit_BMP280::MODE_NORMAL,     // Operating Mode. 
                      Adafruit_BMP280::SAMPLING_X2,     // Temp. oversampling 
                      Adafruit_BMP280::SAMPLING_X1,    // Pressure oversampling 
@@ -27,7 +28,7 @@ class SensorModule {
                      Adafruit_BMP280::STANDBY_MS_1); // Standby time. 
     bmpBasePressureHPa = bmp280.readPressure() / 100;
   
-    Serial.println("Sensor Module initialized.");
+    Logger::log("Sensor Module initialized.");
   }
 
 
@@ -37,11 +38,13 @@ class SensorModule {
     float alt = bmp280.readAltitude(bmpBasePressureHPa);
     float pressure = bmp280.readPressure();
     float est_alt = pressureKalmanFilter.updateEstimate(alt);
-    return est_alt;
+    Logger::debug("Getting altitude");
+    return 0;
   }
 
   float getAcceleration() {
-
+    Logger::debug("Getting acceleration");
+    return 0;
   }
 
 };
