@@ -67,7 +67,7 @@ void loop() {
       if (currMillis - lastMilis > 500) {
           float altitude = sensorModule.getAltitude();
           float acceleration = sensorModule.getAcceleration();
-          double gpsLat = sensorModule.gps.location.lat();
+          double gpsLat = sensorModule.gps.location.lat(); // TODO: We could avoid sensing GPS before apogee
           double gpsLng = sensorModule.gps.location.lng();
 
           createTelemetryPacketStr(communicationModule.packetCount, currentState, altitude, 0, 0);
@@ -77,7 +77,7 @@ void loop() {
           if (detectApogee(altitude, acceleration)){
             Logger::log("Apogee reached.");
             Logger::debug("Altitude: " + String(altitude));
-            switchToState(STATE_PRE_APOGEE);
+            switchToState(STATE_POST_APOGEE);
           }
           lastMilis = currMillis;
       }
