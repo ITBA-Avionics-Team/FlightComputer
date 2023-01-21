@@ -15,7 +15,7 @@ class ElectromechanicalModule {
     }
 
     void deployParachute() {
-      Logger::log("Deploying parachute...");
+      Logger::debug("[ElectromechanicalModule] Deploying parachute...");
       
       digitalWrite(GREEN_PIN, !digitalRead(GREEN_PIN));
       delay(500);

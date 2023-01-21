@@ -37,11 +37,11 @@ class StorageModule {
 
     void addTelemetryPacketToFlightLog(char* telemetryPacket) {
       
-      char packetCountBuff[6];
-      memcpy( packetCountBuff, telemetryPacket, 5);
-      packetCountBuff[5] = '\0';
+      // char packetCountBuff[6];
+      // memcpy( packetCountBuff, telemetryPacket, 5);
+      // packetCountBuff[5] = '\0';
 
-      preferences.putString(packetCountBuff, telemetryPacket);
+      // preferences.putString(packetCountBuff, telemetryPacket);
       Logger::debug("Saving telemetry packet to storage: " + String(telemetryPacket));
     }
 
