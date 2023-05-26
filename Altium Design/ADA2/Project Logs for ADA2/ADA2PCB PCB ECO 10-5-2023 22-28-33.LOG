@@ -1,0 +1,73 @@
+Added Member To Class: ClassName=ESP32 perifericos Member=Component Apogee BORNERA 2
+Added Member To Class: ClassName=ESP32 perifericos Member=Component B1 BMP390
+Added Member To Class: ClassName=ESP32 MCU Member=Component B3 CP2102N-A02-GQFN28R
+Added Member To Class: ClassName=ESP32 perifericos Member=Component B4 W25Q80DVSSIG
+Added Member To Class: ClassName=ESP32 perifericos Member=Component B5 LD2980ABM33TR
+Added Member To Class: ClassName=ESP32 perifericos Member=Component Battery BM02B-GHS-TBT(LF)(SN)
+Added Member To Class: ClassName=ESP32 MCU Member=Component C1 1u
+Added Member To Class: ClassName=ESP32 MCU Member=Component C2 22u
+Added Member To Class: ClassName=ESP32 MCU Member=Component C3 0.1u
+Added Member To Class: ClassName=ESP32 MCU Member=Component C4 1n
+Added Member To Class: ClassName=ESP32 MCU Member=Component C5 0.1u
+Added Member To Class: ClassName=ESP32 MCU Member=Component C6 0.1u
+Added Member To Class: ClassName=ESP32 perifericos Member=Component C7 0.1u
+Added Member To Class: ClassName=ESP32 perifericos Member=Component C8 2.2n
+Added Member To Class: ClassName=ESP32 perifericos Member=Component C9 0.1u
+Added Member To Class: ClassName=ESP32 perifericos Member=Component C10 1u
+Added Member To Class: ClassName=ESP32 MCU Member=Component C12 0.1u
+Added Member To Class: ClassName=ESP32 MCU Member=Component C13 1u
+Added Member To Class: ClassName=ESP32 perifericos Member=Component C14 0.1u
+Added Member To Class: ClassName=ESP32 perifericos Member=Component C15 1u
+Added Member To Class: ClassName=ESP32 perifericos Member=Component C16 10u
+Added Member To Class: ClassName=ESP32 perifericos Member=Component C17 0.1u
+Added Member To Class: ClassName=ESP32 MCU Member=Component D1 ESDALC5-1BT2
+Added Member To Class: ClassName=ESP32 MCU Member=Component D2 ESDALC5-1BT2
+Added Member To Class: ClassName=ESP32 MCU Member=Component D3 ESDALC5-1BT2
+Added Member To Class: ClassName=ESP32 perifericos Member=Component D4 LED RGB
+Added Member To Class: ClassName=ESP32 perifericos Member=Component D5 LED
+Added Member To Class: ClassName=ESP32 perifericos Member=Component D6 LED
+Added Member To Class: ClassName=Mounting Member=Component H1 HOLE
+Added Member To Class: ClassName=Mounting Member=Component H2 HOLE
+Added Member To Class: ClassName=Mounting Member=Component H3 HOLE
+Added Member To Class: ClassName=Mounting Member=Component H4 HOLE
+Added Member To Class: ClassName=ESP32 MCU Member=Component JTAG Header 5
+Added Member To Class: ClassName=ESP32 MCU Member=Component P1 PZ254V-11-04P
+Added Member To Class: ClassName=ESP32 MCU Member=Component P2 PZ254V-11-04P
+Added Member To Class: ClassName=ESP32 MCU Member=Component P3 HEADER-5P-SR
+Added Member To Class: ClassName=ESP32 MCU Member=Component Q1 S8050
+Added Member To Class: ClassName=ESP32 MCU Member=Component Q2 S8050
+Added Member To Class: ClassName=ESP32 perifericos Member=Component Q3 TSM200N03DPQ33_RGG
+Added Member To Class: ClassName=ESP32 perifericos Member=Component R1 470
+Added Member To Class: ClassName=ESP32 MCU Member=Component R2 10k
+Added Member To Class: ClassName=ESP32 MCU Member=Component R3 10k
+Added Member To Class: ClassName=ESP32 perifericos Member=Component R4 10k
+Added Member To Class: ClassName=ESP32 perifericos Member=Component R5 10k
+Added Member To Class: ClassName=ESP32 perifericos Member=Component R6 10k
+Added Member To Class: ClassName=ESP32 MCU Member=Component R7 10k
+Added Member To Class: ClassName=ESP32 MCU Member=Component R8 10k
+Added Member To Class: ClassName=ESP32 perifericos Member=Component R9 10k
+Added Member To Class: ClassName=ESP32 perifericos Member=Component R10 470
+Added Member To Class: ClassName=ESP32 perifericos Member=Component R11 4.7k
+Added Member To Class: ClassName=ESP32 perifericos Member=Component R12 4.7k
+Added Member To Class: ClassName=ESP32 perifericos Member=Component R13 470
+Added Member To Class: ClassName=ESP32 perifericos Member=Component R14 10K
+Added Member To Class: ClassName=ESP32 perifericos Member=Component R15 10K
+Added Member To Class: ClassName=ESP32 perifericos Member=Component R16 470
+Added Member To Class: ClassName=ESP32 perifericos Member=Component R17 470
+Added Member To Class: ClassName=ESP32 MCU Member=Component R18 470
+Added Member To Class: ClassName=ESP32 perifericos Member=Component R19 470
+Added Member To Class: ClassName=ESP32 perifericos Member=Component R20 470
+Added Member To Class: ClassName=ESP32 MCU Member=Component S1 PUSHBUTTON
+Added Member To Class: ClassName=ESP32 perifericos Member=Component Secondary BORNERA 2
+Added Member To Class: ClassName=ESP32 perifericos Member=Component Switches BORNERA 2
+Added Member To Class: ClassName=ESP32 perifericos Member=Component TP1 TESTPOINT_5015
+Added Member To Class: ClassName=ESP32 perifericos Member=Component TP2 TESTPOINT_5015
+Added Member To Class: ClassName=ESP32 perifericos Member=Component TP3 TESTPOINT_5015
+Added Member To Class: ClassName=ESP32 perifericos Member=Component TP4 TESTPOINT_5015
+Added Member To Class: ClassName=ESP32 perifericos Member=Component TP5 TESTPOINT_5015
+Added Member To Class: ClassName=ESP32 perifericos Member=Component TP6 TESTPOINT_5015
+Added Member To Class: ClassName=ESP32 perifericos Member=Component TP7 TESTPOINT_5015
+Added Member To Class: ClassName=ESP32 perifericos Member=Component TP8 TESTPOINT_5015
+Added Member To Class: ClassName=ESP32 MCU Member=Component U1 ESP32-WROOM-32E_(16MB)
+Added Member To Class: ClassName=ESP32 perifericos Member=Component U2 MPU-6050
+Added Member To Class: ClassName=ESP32 MCU Member=Component USB-CON 105017-0001

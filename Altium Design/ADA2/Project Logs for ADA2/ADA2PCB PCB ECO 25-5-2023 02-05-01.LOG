@@ -1,0 +1,11 @@
+Change Component DesignItemId : Designator=P2 Old DesignItemId=PZ254V-11-04P New DesignItemId=HEADER-5P-SR
+Change Component Footprint: Designator=P2 Old Footprint=PZ254V-11-04P New Footprint=PZ254V-11-05P
+Change Component Comment : Designator=P2 Old Comment=PZ254V-11-04P New Comment=HEADER-5P-SR
+Change Component Description : Designator=P2 Old Description=Straight Square Pins 2.5mm 6mm -40?~+105? 1 3mm 4 2.54mm Black Brass 1x4P Straight,P=2.54mm  Pin Headers ROHS New Description=
+Change component parameters: Designator = "P2"; Footprint = "PZ254V-11-05P"; UniqueID = "\QKUONCFL"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "XFCN"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer Part Number"; Value = "PZ254V-11-05P"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier"; Value = "JLCPCB"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Part Number"; Value = "C492404"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=P2-5

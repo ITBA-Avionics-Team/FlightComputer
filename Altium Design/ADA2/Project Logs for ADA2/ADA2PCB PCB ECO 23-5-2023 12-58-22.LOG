@@ -1,0 +1,11 @@
+Removed Pin From Net: NetName=FIRE_APO Pin=P2-3
+Removed Pin From Net: NetName=GND Pin=TP7-1
+Removed Member From Class: ClassName=ESP32 perifericos Member=TP7
+Change Component Description : Designator=P2 Old Description=Straight Square Pins 2.5mm 6mm -40?~+105? 1 3mm 4 2.54mm Black Brass 1x4P Straight,P=2.54mm  Pin Headers ROHS New Description=Straight Square Pins 2.5mm 6mm -40?~+105? 1 3mm 4 2.54mm Black Brass 1x4P Straight,P=2.54mm  Pin Headers ROHS
+Added Pin To Net: NetName=FIRE_SEC Pin=P2-3
+Change Net Name : Old Net Name=FET_SEC New Net Name=FET_MAIN
+Change Net Name : Old Net Name=FIRE_SEC New Net Name=FIRE_MAIN
+Change Net Name : Old Net Name=MES_SEC New Net Name=MES_MAIN
+Added Room: Name=ESP32 MCU
+Added Room: Name=ESP32 perifericos
+Added Room: Name=Mounting

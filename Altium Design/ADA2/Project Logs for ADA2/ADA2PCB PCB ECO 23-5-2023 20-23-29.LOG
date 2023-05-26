@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=CHASSIS Pin=H2-1
+Removed Member From Class: ClassName=Mounting Member=H2
+Added Room: Name=ESP32 MCU
+Added Room: Name=ESP32 perifericos
+Added Room: Name=Mounting

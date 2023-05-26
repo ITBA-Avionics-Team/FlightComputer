@@ -1,0 +1,24 @@
+Change Component Footprint: Designator=R1 Old Footprint=RESSMD0805 New Footprint=0805
+Change Component Footprint: Designator=R2 Old Footprint=RESSMD0805 New Footprint=0805
+Change Component Footprint: Designator=R3 Old Footprint=RESSMD0805 New Footprint=0805
+Change Component Footprint: Designator=R4 Old Footprint=RESSMD0805 New Footprint=0805
+Change Component Footprint: Designator=R5 Old Footprint=RESSMD0805 New Footprint=0805
+Change Component Footprint: Designator=R6 Old Footprint=RESSMD0805 New Footprint=0805
+Change Component Footprint: Designator=R7 Old Footprint=RESSMD0805 New Footprint=0805
+Change Component Footprint: Designator=R8 Old Footprint=RESSMD0805 New Footprint=0805
+Change Component Footprint: Designator=R9 Old Footprint=RESSMD0805 New Footprint=0805
+Change Component Footprint: Designator=R10 Old Footprint=RESSMD0805 New Footprint=0805
+Change Component Footprint: Designator=R11 Old Footprint=RESSMD0805 New Footprint=0805
+Change Component Footprint: Designator=R12 Old Footprint=RESSMD0805 New Footprint=0805
+Change Component Footprint: Designator=R13 Old Footprint=RESSMD0805 New Footprint=0805
+Change Component Footprint: Designator=R14 Old Footprint=RESSMD0805 New Footprint=0805
+Change Component Footprint: Designator=R15 Old Footprint=RESSMD0805 New Footprint=0805
+Change Component Footprint: Designator=R16 Old Footprint=RESSMD0805 New Footprint=0805
+Change Component Footprint: Designator=R17 Old Footprint=RESSMD0805 New Footprint=0805
+Change Component Footprint: Designator=R18 Old Footprint=RESSMD0805 New Footprint=0805
+Change Component Footprint: Designator=R20 Old Footprint=RESSMD0805 New Footprint=0805
+Change Component Footprint: Designator=R21 Old Footprint=RESSMD0805 New Footprint=0805
+Change Component Footprint: Designator=R22 Old Footprint=RESSMD0805 New Footprint=0805
+Added Room: Name=ESP32 MCU
+Added Room: Name=ESP32 perifericos
+Added Room: Name=Mounting
