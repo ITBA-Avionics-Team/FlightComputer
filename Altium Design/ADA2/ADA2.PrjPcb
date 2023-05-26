@@ -55,7 +55,7 @@ GenerateClassCluster=0
 DocumentUniqueId=NEFUSGIF
 
 [Document2]
-DocumentPath=..\..\..\..\..\Agus\Desktop\PCB LPC55S0x\ESP32 Platform.PcbLib
+DocumentPath=ESP32 Platform.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -138,23 +138,6 @@ ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=LNNJMFTR
-
-[Document7]
-DocumentPath=..\..\..\..\..\Agus\Downloads\altium-libs-main\altium-libs-main\Database\Project Outputs for Library\Library.IntLib
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
 
 [GeneratedDocument1]
 DocumentPath=Project Outputs for ADA2\Design Rule Check - ADA2PCB.html
