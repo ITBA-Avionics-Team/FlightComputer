@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=GPIO32 Pin=R1-2
+Removed Pin From Net: NetName=GPIO33 Pin=R16-2
+Added Pin To Net: NetName=GPIO26 Pin=R1-2
+Added Pin To Net: NetName=GPIO25 Pin=R16-2

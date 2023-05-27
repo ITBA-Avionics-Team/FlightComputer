@@ -1,0 +1,18 @@
+Change Component DesignItemId : Designator=USB-CON Old DesignItemId=105017-0001 New DesignItemId=Micro-B Molex 1051640001
+Change Component Footprint: Designator=USB-CON Old Footprint=Micro-B Molex 1051640001 New Footprint=MOLEX_105017-0001
+Change Component Comment : Designator=USB-CON Old Comment=105017-0001 New Comment=Micro-B Molex 1051640001
+Added Component: Designator=J?(MOLEX_105017-0001)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Availability"; Value = "In Stock"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/105017-0001/Molex/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Molex"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "105017-0001"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Purchase-URL"; Value = "https://pricing.snapeda.com/search/part/105017-0001/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/105017-0001/Molex/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Member To Class: ClassName=ESP32 MCU Member=Component J? Micro-B Molex 1051640001
+Added Room: Name=ESP32 MCU
+Added Room: Name=ESP32 perifericos
+Added Room: Name=Mounting
