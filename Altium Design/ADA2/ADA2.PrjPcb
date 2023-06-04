@@ -172,24 +172,24 @@ DocumentPath=Project Outputs for ADA2\Design Rule Check - ADA2PCB.html
 DItemRevisionGUID=
 
 [Parameter1]
-Name=TotalSheet
-Value=3
+Name=pcb_author
+Value=Agustín Galdeman
 
 [Parameter2]
-Name=pcb_reviewer
-Value=Ian Cruz Diaz
+Name=pcb_name
+Value=ADA 2 Flight Computer MPU
 
 [Parameter3]
 Name=pcb_rev
 Value=A.00
 
 [Parameter4]
-Name=pcb_name
-Value=ADA 2 Flight Computer MPU
+Name=pcb_reviewer
+Value=Ian Cruz Diaz
 
 [Parameter5]
-Name=pcb_author
-Value=Agustín Galdeman
+Name=TotalSheet
+Value=3
 
 [Configuration1]
 Name=Sources
