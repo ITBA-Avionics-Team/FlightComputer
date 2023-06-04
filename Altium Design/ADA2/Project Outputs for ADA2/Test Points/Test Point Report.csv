@@ -1,0 +1,7 @@
+"Net","Name","X Coord","Y Coord","Side","Hole Size","Type"
+"SCL","TP4-1","1899mil","1748mil","Top","0mil","Surface mount"
+"SDA","TP3-1","1985.339mil","1224mil","Top","0mil","Surface mount"
+"VIN","TP1-1","1274.714mil","146.518mil","Top","0mil","Surface mount"
+"GND","TP5-1","1759.642mil","1224.641mil","Top","0mil","Surface mount"
+"GND","TP6-1","1032.764mil","146.518mil","Top","0mil","Surface mount"
+"3V3","TP2-1","1275.714mil","355.518mil","Top","0mil","Surface mount"

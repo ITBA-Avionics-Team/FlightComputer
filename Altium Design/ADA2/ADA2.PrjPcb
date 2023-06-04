@@ -167,8 +167,405 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
+[Document8]
+DocumentPath=OutJob.OutJob
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
 [GeneratedDocument1]
+DocumentPath=Project Outputs for ADA2\EDIF\ADA2.EDF
+DItemRevisionGUID=
+
+[GeneratedDocument2]
+DocumentPath=Project Outputs for Free Documents\EDIF\ADA2.EDF
+DItemRevisionGUID=
+
+[GeneratedDocument3]
+DocumentPath=Project Outputs for ADA2\IPC2581\ADA2PCB.cvg
+DItemRevisionGUID=
+
+[GeneratedDocument4]
+DocumentPath=Project Outputs for Free Documents\IPC2581\ADA2PCB.cvg
+DItemRevisionGUID=
+
+[GeneratedDocument5]
+DocumentPath=Project Outputs for ADA2\GerberX2\ADA2PCB.EXTREP
+DItemRevisionGUID=
+
+[GeneratedDocument6]
+DocumentPath=Project Outputs for Free Documents\GerberX2\ADA2PCB.EXTREP
+DItemRevisionGUID=
+
+[GeneratedDocument7]
+DocumentPath=Project Outputs for ADA2\PCB 3D Print\ADA2PCB.png
+DItemRevisionGUID=
+
+[GeneratedDocument8]
+DocumentPath=Project Outputs for Free Documents\PCB 3D Print\ADA2PCB.png
+DItemRevisionGUID=
+
+[GeneratedDocument9]
+DocumentPath=Project Outputs for ADA2\GerberX2\ADA2PCB.REP
+DItemRevisionGUID=
+
+[GeneratedDocument10]
+DocumentPath=Project Outputs for ADA2\ODB\ADA2PCB.REP
+DItemRevisionGUID=
+
+[GeneratedDocument11]
+DocumentPath=Project Outputs for Free Documents\GerberX2\ADA2PCB.REP
+DItemRevisionGUID=
+
+[GeneratedDocument12]
+DocumentPath=Project Outputs for Free Documents\ODB\ADA2PCB.REP
+DItemRevisionGUID=
+
+[GeneratedDocument13]
+DocumentPath=Project Outputs for ADA2\ExportSTEP\ADA2PCB.step
+DItemRevisionGUID=
+
+[GeneratedDocument14]
+DocumentPath=Project Outputs for Free Documents\ExportSTEP\ADA2PCB.step
+DItemRevisionGUID=
+
+[GeneratedDocument15]
+DocumentPath=Project Outputs for ADA2\GerberX2\ADA2PCB_Copper_Signal_1.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument16]
+DocumentPath=Project Outputs for Free Documents\GerberX2\ADA2PCB_Copper_Signal_1.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument17]
+DocumentPath=Project Outputs for ADA2\GerberX2\ADA2PCB_Copper_Signal_2.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument18]
+DocumentPath=Project Outputs for Free Documents\GerberX2\ADA2PCB_Copper_Signal_2.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument19]
+DocumentPath=Project Outputs for ADA2\GerberX2\ADA2PCB_Copper_Signal_Bot.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument20]
+DocumentPath=Project Outputs for Free Documents\GerberX2\ADA2PCB_Copper_Signal_Bot.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument21]
+DocumentPath=Project Outputs for ADA2\GerberX2\ADA2PCB_Copper_Signal_Top.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument22]
+DocumentPath=Project Outputs for Free Documents\GerberX2\ADA2PCB_Copper_Signal_Top.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument23]
+DocumentPath=Project Outputs for ADA2\GerberX2\ADA2PCB_Legend_Bot.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument24]
+DocumentPath=Project Outputs for Free Documents\GerberX2\ADA2PCB_Legend_Bot.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument25]
+DocumentPath=Project Outputs for ADA2\GerberX2\ADA2PCB_Legend_Top.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument26]
+DocumentPath=Project Outputs for Free Documents\GerberX2\ADA2PCB_Legend_Top.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument27]
+DocumentPath=Project Outputs for ADA2\GerberX2\ADA2PCB_NPTH_Drill.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument28]
+DocumentPath=Project Outputs for Free Documents\GerberX2\ADA2PCB_NPTH_Drill.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument29]
+DocumentPath=Project Outputs for ADA2\GerberX2\ADA2PCB_Paste_Bot.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument30]
+DocumentPath=Project Outputs for Free Documents\GerberX2\ADA2PCB_Paste_Bot.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument31]
+DocumentPath=Project Outputs for ADA2\GerberX2\ADA2PCB_Paste_Top.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument32]
+DocumentPath=Project Outputs for Free Documents\GerberX2\ADA2PCB_Paste_Top.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument33]
+DocumentPath=Project Outputs for ADA2\GerberX2\ADA2PCB_Profile.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument34]
+DocumentPath=Project Outputs for Free Documents\GerberX2\ADA2PCB_Profile.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument35]
+DocumentPath=Project Outputs for ADA2\GerberX2\ADA2PCB_PTH_Drill.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument36]
+DocumentPath=Project Outputs for Free Documents\GerberX2\ADA2PCB_PTH_Drill.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument37]
+DocumentPath=Project Outputs for ADA2\GerberX2\ADA2PCB_Soldermask_Bot.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument38]
+DocumentPath=Project Outputs for Free Documents\GerberX2\ADA2PCB_Soldermask_Bot.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument39]
+DocumentPath=Project Outputs for ADA2\GerberX2\ADA2PCB_Soldermask_Top.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument40]
+DocumentPath=Project Outputs for Free Documents\GerberX2\ADA2PCB_Soldermask_Top.gbr
+DItemRevisionGUID=
+
+[GeneratedDocument41]
+DocumentPath=Project Outputs for ADA2\Test Points\Assembly Testpoint Report for ADA2PCB.csv
+DItemRevisionGUID=
+
+[GeneratedDocument42]
+DocumentPath=Project Outputs for Free Documents\Test Points\Assembly Testpoint Report for ADA2PCB.csv
+DItemRevisionGUID=
+
+[GeneratedDocument43]
+DocumentPath=Project Outputs for ADA2\BOM\Bill of Materials-ADA2.xlsx
+DItemRevisionGUID=
+
+[GeneratedDocument44]
+DocumentPath=Project Outputs for Free Documents\BOM\Bill of Materials-ADA2.xlsx
+DItemRevisionGUID=
+
+[GeneratedDocument45]
+DocumentPath=Project Outputs for ADA2\ODB\odb\steps\pcb\layers\comp_+_top\components
+DItemRevisionGUID=
+
+[GeneratedDocument46]
+DocumentPath=Project Outputs for Free Documents\ODB\odb\steps\pcb\layers\comp_+_top\components
+DItemRevisionGUID=
+
+[GeneratedDocument47]
+DocumentPath=Project Outputs for ADA2\ODB\odb\steps\pcb\eda\data
+DItemRevisionGUID=
+
+[GeneratedDocument48]
+DocumentPath=Project Outputs for Free Documents\ODB\odb\steps\pcb\eda\data
+DItemRevisionGUID=
+
+[GeneratedDocument49]
 DocumentPath=Project Outputs for ADA2\Design Rule Check - ADA2PCB.html
+DItemRevisionGUID=
+
+[GeneratedDocument50]
+DocumentPath=Project Outputs for ADA2\ODB\odb\steps\pcb\layers\bottom_overlay\features
+DItemRevisionGUID=
+
+[GeneratedDocument51]
+DocumentPath=Project Outputs for ADA2\ODB\odb\steps\pcb\layers\bottom_paste\features
+DItemRevisionGUID=
+
+[GeneratedDocument52]
+DocumentPath=Project Outputs for ADA2\ODB\odb\steps\pcb\layers\bottom_solder\features
+DItemRevisionGUID=
+
+[GeneratedDocument53]
+DocumentPath=Project Outputs for ADA2\ODB\odb\steps\pcb\layers\comp_+_top\features
+DItemRevisionGUID=
+
+[GeneratedDocument54]
+DocumentPath=Project Outputs for ADA2\ODB\odb\steps\pcb\layers\dielectric2\features
+DItemRevisionGUID=
+
+[GeneratedDocument55]
+DocumentPath=Project Outputs for ADA2\ODB\odb\steps\pcb\layers\dielectric3\features
+DItemRevisionGUID=
+
+[GeneratedDocument56]
+DocumentPath=Project Outputs for ADA2\ODB\odb\steps\pcb\layers\dielectric_1\features
+DItemRevisionGUID=
+
+[GeneratedDocument57]
+DocumentPath=Project Outputs for ADA2\ODB\odb\steps\pcb\layers\drill_non-plated_bottom-top\features
+DItemRevisionGUID=
+
+[GeneratedDocument58]
+DocumentPath=Project Outputs for ADA2\ODB\odb\steps\pcb\layers\drill_plated_bottom-top\features
+DItemRevisionGUID=
+
+[GeneratedDocument59]
+DocumentPath=Project Outputs for ADA2\ODB\odb\steps\pcb\layers\l1-top\features
+DItemRevisionGUID=
+
+[GeneratedDocument60]
+DocumentPath=Project Outputs for ADA2\ODB\odb\steps\pcb\layers\l2-gnd\features
+DItemRevisionGUID=
+
+[GeneratedDocument61]
+DocumentPath=Project Outputs for ADA2\ODB\odb\steps\pcb\layers\l3-pwr\features
+DItemRevisionGUID=
+
+[GeneratedDocument62]
+DocumentPath=Project Outputs for ADA2\ODB\odb\steps\pcb\layers\l4-bot\features
+DItemRevisionGUID=
+
+[GeneratedDocument63]
+DocumentPath=Project Outputs for ADA2\ODB\odb\steps\pcb\layers\top_overlay\features
+DItemRevisionGUID=
+
+[GeneratedDocument64]
+DocumentPath=Project Outputs for ADA2\ODB\odb\steps\pcb\layers\top_paste\features
+DItemRevisionGUID=
+
+[GeneratedDocument65]
+DocumentPath=Project Outputs for ADA2\ODB\odb\steps\pcb\layers\top_solder\features
+DItemRevisionGUID=
+
+[GeneratedDocument66]
+DocumentPath=Project Outputs for Free Documents\ODB\odb\steps\pcb\layers\bottom_overlay\features
+DItemRevisionGUID=
+
+[GeneratedDocument67]
+DocumentPath=Project Outputs for Free Documents\ODB\odb\steps\pcb\layers\bottom_paste\features
+DItemRevisionGUID=
+
+[GeneratedDocument68]
+DocumentPath=Project Outputs for Free Documents\ODB\odb\steps\pcb\layers\bottom_solder\features
+DItemRevisionGUID=
+
+[GeneratedDocument69]
+DocumentPath=Project Outputs for Free Documents\ODB\odb\steps\pcb\layers\comp_+_top\features
+DItemRevisionGUID=
+
+[GeneratedDocument70]
+DocumentPath=Project Outputs for Free Documents\ODB\odb\steps\pcb\layers\dielectric2\features
+DItemRevisionGUID=
+
+[GeneratedDocument71]
+DocumentPath=Project Outputs for Free Documents\ODB\odb\steps\pcb\layers\dielectric3\features
+DItemRevisionGUID=
+
+[GeneratedDocument72]
+DocumentPath=Project Outputs for Free Documents\ODB\odb\steps\pcb\layers\dielectric_1\features
+DItemRevisionGUID=
+
+[GeneratedDocument73]
+DocumentPath=Project Outputs for Free Documents\ODB\odb\steps\pcb\layers\drill_non-plated_bottom-top\features
+DItemRevisionGUID=
+
+[GeneratedDocument74]
+DocumentPath=Project Outputs for Free Documents\ODB\odb\steps\pcb\layers\drill_plated_bottom-top\features
+DItemRevisionGUID=
+
+[GeneratedDocument75]
+DocumentPath=Project Outputs for Free Documents\ODB\odb\steps\pcb\layers\l1-top\features
+DItemRevisionGUID=
+
+[GeneratedDocument76]
+DocumentPath=Project Outputs for Free Documents\ODB\odb\steps\pcb\layers\l2-gnd\features
+DItemRevisionGUID=
+
+[GeneratedDocument77]
+DocumentPath=Project Outputs for Free Documents\ODB\odb\steps\pcb\layers\l3-pwr\features
+DItemRevisionGUID=
+
+[GeneratedDocument78]
+DocumentPath=Project Outputs for Free Documents\ODB\odb\steps\pcb\layers\l4-bot\features
+DItemRevisionGUID=
+
+[GeneratedDocument79]
+DocumentPath=Project Outputs for Free Documents\ODB\odb\steps\pcb\layers\top_overlay\features
+DItemRevisionGUID=
+
+[GeneratedDocument80]
+DocumentPath=Project Outputs for Free Documents\ODB\odb\steps\pcb\layers\top_paste\features
+DItemRevisionGUID=
+
+[GeneratedDocument81]
+DocumentPath=Project Outputs for Free Documents\ODB\odb\steps\pcb\layers\top_solder\features
+DItemRevisionGUID=
+
+[GeneratedDocument82]
+DocumentPath=Project Outputs for ADA2\ODB\odb\matrix\matrix
+DItemRevisionGUID=
+
+[GeneratedDocument83]
+DocumentPath=Project Outputs for Free Documents\ODB\odb\matrix\matrix
+DItemRevisionGUID=
+
+[GeneratedDocument84]
+DocumentPath=Project Outputs for ADA2\ODB\odb\steps\pcb\netlists\cadnet\netlist
+DItemRevisionGUID=
+
+[GeneratedDocument85]
+DocumentPath=Project Outputs for Free Documents\ODB\odb\steps\pcb\netlists\cadnet\netlist
+DItemRevisionGUID=
+
+[GeneratedDocument86]
+DocumentPath=Project Outputs for ADA2\Pick Place\Pick Place for ADA2PCB.csv
+DItemRevisionGUID=
+
+[GeneratedDocument87]
+DocumentPath=Project Outputs for ADA2\Pick Place\Pick Place for ADA2PCB.txt
+DItemRevisionGUID=
+
+[GeneratedDocument88]
+DocumentPath=Project Outputs for Free Documents\Pick Place\Pick Place for ADA2PCB.txt
+DItemRevisionGUID=
+
+[GeneratedDocument89]
+DocumentPath=Project Outputs for ADA2\ODB\odb\steps\pcb\profile
+DItemRevisionGUID=
+
+[GeneratedDocument90]
+DocumentPath=Project Outputs for Free Documents\ODB\odb\steps\pcb\profile
+DItemRevisionGUID=
+
+[GeneratedDocument91]
+DocumentPath=Project Outputs for ADA2\ODB\odb\steps\pcb\stephdr
+DItemRevisionGUID=
+
+[GeneratedDocument92]
+DocumentPath=Project Outputs for Free Documents\ODB\odb\steps\pcb\stephdr
+DItemRevisionGUID=
+
+[GeneratedDocument93]
+DocumentPath=Project Outputs for ADA2\ODB\odb\steps\pcb\layers\drill_non-plated_bottom-top\tools
+DItemRevisionGUID=
+
+[GeneratedDocument94]
+DocumentPath=Project Outputs for ADA2\ODB\odb\steps\pcb\layers\drill_plated_bottom-top\tools
+DItemRevisionGUID=
+
+[GeneratedDocument95]
+DocumentPath=Project Outputs for Free Documents\ODB\odb\steps\pcb\layers\drill_non-plated_bottom-top\tools
+DItemRevisionGUID=
+
+[GeneratedDocument96]
+DocumentPath=Project Outputs for Free Documents\ODB\odb\steps\pcb\layers\drill_plated_bottom-top\tools
 DItemRevisionGUID=
 
 [Parameter1]

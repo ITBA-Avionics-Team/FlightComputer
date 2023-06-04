@@ -1,0 +1,10 @@
+Output: Export STEP
+Type  : ExportSTEP
+From  : Variant [[No Variations]] of PCB Document [ADA2PCB.PcbDoc]
+   Generated File[Export STEP.step]
+
+
+Files Generated   : 1
+Documents Printed : 0
+
+Finished Output Generation At 00:16:36 On 04/06/2023

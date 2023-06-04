@@ -1,0 +1,93 @@
+Altium Designer Pick and Place Locations
+C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\Pick Place\Pick and Place.txt
+
+========================================================================================================================
+File Design Information:
+
+Date:       04/06/23
+Time:       00:16
+Revision:   cf782982bba0fc9205bb31d4364a7843f1184ecb
+Variant:    No variations
+Units used: mil
+
+Designator Layer    Footprint                   Center-X(mil) Center-Y(mil) Rotation 
+FD3        TopLayer FIDUCIAL                    470.000mil    1984.000mil   0        
+FD2        TopLayer FIDUCIAL                    2375.000mil   590.000mil    0        
+FD1        TopLayer FIDUCIAL                    792.792mil    325.000mil    0        
+D4         TopLayer 4-PLCC                      2795.000mil   1885.000mil   180      
+U1         TopLayer XCVR_ESP32-WROOM-32E_(16MB) 3160.394mil   1169.488mil   270      
+P4         TopLayer Micro-B_Molex_1051640001    1693.091mil   112.362mil    90       
+U2         TopLayer QFN24                       2236.299mil   1259.488mil   0        
+TP6        TopLayer 5015                        1032.764mil   146.518mil    0        
+TP5        TopLayer 5015                        1759.642mil   1224.641mil   0        
+TP4        TopLayer 5015                        1899.000mil   1748.000mil   0        
+TP3        TopLayer 5015                        1985.339mil   1224.000mil   180      
+TP2        TopLayer 5015                        1275.714mil   355.518mil    0        
+TP1        TopLayer 5015                        1274.714mil   146.518mil    0        
+P6         TopLayer BORNERA2                    873.425mil    1975.000mil   270      
+P5         TopLayer BORNERA2                    195.000mil    1563.425mil   0        
+S2         TopLayer PUSHBUTTON_2                1949.866mil   715.228mil    0        
+S1         TopLayer PUSHBUTTON_2                3285.866mil   456.772mil    0        
+R22        TopLayer 0805                        3069.000mil   105.000mil    90       
+R21        TopLayer 0805                        2909.996mil   146.000mil    0        
+R20        TopLayer 0805                        1360.000mil   1740.000mil   0        
+R19        TopLayer 0805                        1689.920mil   1790.000mil   90       
+R18        TopLayer 0805                        449.488mil    196.850mil    180      
+R17        TopLayer 0805                        2736.000mil   2047.000mil   90       
+R16        TopLayer 0805                        2844.814mil   1748.000mil   0        
+R15        TopLayer 0805                        730.000mil    1625.000mil   180      
+R14        TopLayer 0805                        780.000mil    1359.000mil   270      
+R13        TopLayer 0805                        730.000mil    1513.976mil   180      
+R12        TopLayer 0805                        1936.661mil   1571.000mil   180      
+R11        TopLayer 0805                        1944.000mil   1430.294mil   180      
+R10        TopLayer 0805                        921.000mil    1317.661mil   180      
+R9         TopLayer 0805                        526.236mil    1570.394mil   270      
+R8         TopLayer 0805                        2627.000mil   745.043mil    0        
+R7         TopLayer 0805                        2461.831mil   820.000mil    270      
+R6         TopLayer 0805                        526.236mil    1774.103mil   270      
+R5         TopLayer 0805                        600.000mil    1095.000mil   180      
+R4         TopLayer 0805                        641.339mil    919.514mil    90       
+R3         TopLayer 0805                        3060.000mil   265.000mil    0        
+R2         TopLayer 0805                        3357.000mil   1720.000mil   0        
+R1         TopLayer 0805                        3018.661mil   1974.000mil   0        
+Q3         TopLayer TRANS_TSM200N03DPQ33_RGG    555.000mil    1330.000mil   180      
+Q2         TopLayer SOT-23-3                    2548.937mil   590.000mil    0        
+Q1         TopLayer SOT-23-3                    2620.000mil   938.937mil    90       
+P3         TopLayer HDR1X6                      3210.477mil   2088.000mil   180      
+P2         TopLayer PZ254V-11-05P               77.815mil     602.815mil    270      
+P1         TopLayer PZ254V-11-05P               2287.000mil   2060.000mil   180      
+H4         TopLayer HOLE_M3                     196.850mil    1968.504mil   0        
+H3         TopLayer HOLE_M3                     196.850mil    196.850mil    0        
+H1         TopLayer HOLE_M3                     3346.457mil   196.850mil    0        
+D6         TopLayer LEDSMD0603                  1318.661mil   1858.189mil   90       
+D5         TopLayer LEDSMD0603                  1690.000mil   1619.000mil   270      
+D3         TopLayer ESDALC51BT2                 1816.452mil   232.000mil    0        
+D2         TopLayer ESDALC51BT2                 1971.000mil   394.634mil    270      
+D1         TopLayer ESDALC51BT2                 1970.000mil   474.701mil    90       
+C21        TopLayer CAPSMD0805                  2511.535mil   130.000mil    270      
+C20        TopLayer CAPSMD0805                  2242.646mil   751.000mil    90       
+C19        TopLayer CAPSMD0805                  1595.000mil   940.000mil    90       
+C18        TopLayer CAPSMD0805                  1503.397mil   940.000mil    90       
+C17        TopLayer CAPSMD0805                  1594.000mil   1361.016mil   270      
+C16        TopLayer CAPSMD0805                  1498.425mil   1362.339mil   270      
+C15        TopLayer CAPSMD0805                  1186.661mil   1315.000mil   180      
+C14        TopLayer CAPSMD0805                  1186.661mil   1407.000mil   180      
+C13        TopLayer CAPSMD0805                  2400.000mil   130.000mil    270      
+C12        TopLayer CAPSMD0805                  2615.000mil   130.000mil    270      
+C11        TopLayer CAPSMD0805                  2140.000mil   1020.000mil   270      
+C10        TopLayer CAPSMD0805                  2087.499mil   1767.417mil   90       
+C9         TopLayer CAPSMD0805                  2285.000mil   1010.000mil   270      
+C8         TopLayer CAPSMD0805                  2430.000mil   1415.000mil   0        
+C7         TopLayer CAPSMD0805                  2177.205mil   1767.417mil   90       
+C6         TopLayer CAPSMD0805                  2909.996mil   55.000mil     0        
+C5         TopLayer CAPSMD0805                  2409.744mil   1168.937mil   270      
+C4         TopLayer CAPSMD0805                  3370.661mil   637.000mil    0        
+C3         TopLayer CAPSMD0805                  3492.000mil   1837.504mil   90       
+C2         TopLayer CAPSMD0805                  3374.000mil   1837.339mil   90       
+C1         TopLayer CAPSMD0805                  3273.257mil   1635.000mil   180      
+P7         TopLayer JST_BM02B-GHS-TBT(LF)(SN)   1479.606mil   2030.945mil   180      
+U6         TopLayer SON65P200X200X80-7N         1365.000mil   1432.362mil   180      
+U4         TopLayer SOIC127P790X216-8N          1343.268mil   715.000mil    0        
+U3         TopLayer CP2102N                     2855.000mil   445.000mil    0        
+U5         TopLayer BMP390                      2229.961mil   1629.842mil   90       
+P8         TopLayer BORNERA2                    195.000mil    1126.575mil   0        

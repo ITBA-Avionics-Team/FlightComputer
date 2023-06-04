@@ -1,0 +1,82 @@
+*************************************************************
+FileName = ADA2PCB.PcbDoc
+ODB++ directory structure
+*************************************************************
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\profile
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\stephdr
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\attrlist
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\dielectric2\features
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\dielectric2\attrlist
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\drill_non-plated_bottom-top\features
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\drill_non-plated_bottom-top\attrlist
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\drill_non-plated_bottom-top\tools
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\dielectric_1\features
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\dielectric_1\attrlist
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\dielectric3\features
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\dielectric3\attrlist
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\bottom_paste\features
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\bottom_paste\attrlist
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\drill_plated_bottom-top\features
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\drill_plated_bottom-top\attrlist
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\drill_plated_bottom-top\tools
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\bottom_solder\features
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\bottom_solder\attrlist
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\l2-gnd\features
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\l2-gnd\attrlist
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\l4-bot\features
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\l4-bot\attrlist
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\l3-pwr\features
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\l3-pwr\attrlist
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\top_solder\features
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\top_solder\attrlist
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\top_paste\features
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\top_paste\attrlist
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\bottom_overlay\features
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\bottom_overlay\attrlist
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\l1-top\features
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\l1-top\attrlist
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\top_overlay\features
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\top_overlay\attrlist
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\comp_+_top\features
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\layers\comp_+_top\components
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\steps\pcb\eda\data
+
+Generated File : C:\Users\idiaz\Desktop\FlightComputer\Altium Design\ADA2\Project Outputs for ADA2\ODB\odb\matrix\matrix
+
