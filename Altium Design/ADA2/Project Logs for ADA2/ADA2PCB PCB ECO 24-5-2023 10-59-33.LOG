@@ -1,4 +1,0 @@
-Removed Pin From Net: NetName=MES_APO Pin=U1-10
-Removed Pin From Net: NetName=MES_MAIN Pin=U1-11
-Added Pin To Net: NetName=MES_APO Pin=U1-24
-Added Pin To Net: NetName=MES_MAIN Pin=U1-26

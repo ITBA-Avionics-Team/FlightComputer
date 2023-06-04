@@ -1,6 +1,0 @@
-Removed Pin From Net: NetName=FIRE_MAIN Pin=P2-4
-Change Component Description : Designator=P2 Old Description=Straight Square Pins 2.5mm 6mm -40?~+105? 1 3mm 4 2.54mm Black Brass 1x4P Straight,P=2.54mm  Pin Headers ROHS New Description=Straight Square Pins 2.5mm 6mm -40?~+105? 1 3mm 4 2.54mm Black Brass 1x4P Straight,P=2.54mm  Pin Headers ROHS
-Added Pin To Net: NetName=FIRE_APO Pin=P2-4
-Added Room: Name=ESP32 MCU
-Added Room: Name=ESP32 perifericos
-Added Room: Name=Mounting

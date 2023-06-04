@@ -1,1 +1,3 @@
-Record=TopLevelDocument|FileName=ESP32 MCU.SchDoc
+Record=TopLevelDocument|FileName=ESP32 MCU.SchDoc|SheetNumber=1
+Record=NoMainPathDocument|SourceDocument=ESP32 MCU.SchDoc|FileName=ESP32 perifericos.SchDoc|SheetNumber=2
+Record=NoMainPathDocument|SourceDocument=ESP32 MCU.SchDoc|FileName=Mounting.SchDoc|SheetNumber=3

@@ -1,0 +1,16 @@
+[DesignatorManager]
+
+[SheetNumberManager]
+SheetNumberOrder=Display Order
+SheetNumberMethod=Increasing
+DocumentName0=ESP32 MCU.SchDoc
+UniqueIDPath0=
+SheetNumber0=1
+DocumentName1=ESP32 perifericos.SchDoc
+UniqueIDPath1=
+SheetNumber1=2
+DocumentName2=Mounting.SchDoc
+UniqueIDPath2=
+SheetNumber2=3
+
+
