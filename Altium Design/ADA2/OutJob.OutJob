@@ -202,9 +202,9 @@ Configuration12_Item3=Manufacturer Part Number=True
 Configuration12_Name4=SortOrder
 Configuration12_Item4=Designator=Up
 Configuration12_Name5=VisibleOrder
-Configuration12_Item5=Description=120|Designator=120|Value=100|Manufacturer=100|Manufacturer Part Number=100|Supplier=100|Supplier Part Number=100|Quantity=120
+Configuration12_Item5=Designator=120|Value=100|Manufacturer=100|Manufacturer Part Number=100|Description=120|Supplier=100|Supplier Part Number=100|Quantity=120
 Configuration12_Name6=VisibleOrder_Flat
-Configuration12_Item6=Description=120|Designator=120|Value=100|Manufacturer=100|Manufacturer Part Number=100|Supplier=100|Supplier Part Number=100|Quantity=120
+Configuration12_Item6=Designator=120|Value=100|Manufacturer=100|Manufacturer Part Number=100|Description=120|Supplier=100|Supplier Part Number=100|Quantity=120
 OutputType13=ExportSTEP
 OutputName13=Export STEP
 OutputCategory13=Export
