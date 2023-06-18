@@ -26,14 +26,14 @@ class SensorModule {
   float bmpBasePressureHPa = 1008;
   KalmanFilter pressureKalmanFilter = KalmanFilter(1, 1, 0.01);
   int currentPressureValIndex = 0;
-  MockGPS gps;
+  // MockGPS gps;
 
 
   void init() {
     Logger::log("Mock Sensor Module initialized.");
 
-    gps.location.lat = &getMockLat;
-    gps.location.lng = &getMockLng;
+    // gps.location.lat = &getMockLat;
+    // gps.location.lng = &getMockLng;
   }
 
 
