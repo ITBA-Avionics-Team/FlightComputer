@@ -1,8 +1,8 @@
-#define GREEN_PIN_DROGUE 0
 #define PYRO_PIN_DROGUE 0
-
-#define GREEN_PIN_MAIN 0
 #define PYRO_PIN_MAIN 0
+
+#define GREEN_PIN 0
+#define RED_PIN 0
 
 class ElectromechanicalModule {
   bool drogueDeployed = false;
@@ -33,9 +33,9 @@ class ElectromechanicalModule {
     void deployMainParachute() {
       Logger::log("Deploying main parachute...");
       
-      // digitalWrite(GREEN_PIN, !digitalRead(GREEN_PIN));
+      // digitalWrite(GREEN_PIN, !digitalRead(RED_PIN));
       // delay(500);
-      // digitalWrite(GREEN_PIN, !digitalRead(GREEN_PIN));
+      // digitalWrite(GREEN_PIN, !digitalRead(RED_PIN));
       
       digitalWrite(PYRO_PIN_MAIN, HIGH); //FIRE!
       mainDeployed = true;

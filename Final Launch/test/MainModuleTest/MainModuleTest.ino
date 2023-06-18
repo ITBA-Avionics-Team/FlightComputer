@@ -1,8 +1,7 @@
 #include "Logger.h"
-#include "MockStorageModule.h"
-#include "MockCommunicationModule.h"
-#include "MockElectromechanicalModule.h"
-#include "MockSensorModule.h"
+#include "StorageModule.h"
+#include "ElectromechanicalModule.h"
+#include "SensorModule.h"
 #include <stdint.h>
 
 #include <vector>
@@ -10,18 +9,20 @@
 // Enums
 #define STATE_STARTUP 0
 #define STATE_PRE_APOGEE 1
-#define STATE_POST_APOGEE 2
-#define STATE_LANDED 3
+#define STATE_DROGUE_DEPLOYED 2
+#define STATE_MAIN_DEPLOYED 3
+#define STATE_LANDED 4
 
 // Telemetry packet related data
 #define TELEMETRY_PACKET_STRING_LENGTH 36
 
 static const char startupStr[2] = {'S', 'T'};
-static const char preApogeeStr[10] = {'P', 'R'};
-static const char postApogeeStr[10] = {'P', 'O'};
-static const char landedStr[10] = {'L', 'A'};
+static const char preApogeeStr[2] = {'P', 'R'};
+static const char drogueDeployedStr[2] = {'D', 'D'};
+static const char mainDeployedStr[2] = {'M', 'D'};
+static const char landedStr[2] = {'L', 'A'};
 
-const char* STATE_STRING_ARRAY[4] = {startupStr, preApogeeStr, postApogeeStr, landedStr};
+const char* STATE_STRING_ARRAY[5] = {startupStr, preApogeeStr, drogueDeployedStr, mainDeployedStr, landedStr};
 
 
 // State variables
@@ -37,12 +38,13 @@ unsigned long lastMilis = 0;
 #define APOGEE_DETECTION_MARGIN 0.8
 #define LANDING_DETECTION_MARGIN 0.8
 #define LANDING_ALTITUDE 3
+#define MAIN_PARACHUTE_DEPLOYMENT_ALTITUDE 300 // In meters
+
 std::vector<float> latestAltitudes;
 
 
 // Modules
 StorageModule storageModule = StorageModule();
-CommunicationModule communicationModule = CommunicationModule();
 ElectromechanicalModule electromechanicalModule = ElectromechanicalModule();
 SensorModule sensorModule = SensorModule();
 
@@ -51,7 +53,6 @@ void setup() {
   
   storageModule.init();
   sensorModule.init();
-  communicationModule.init(storageModule);
   electromechanicalModule.init();
 
   lastMilis = millis();
@@ -70,7 +71,10 @@ void loop() {
 
         latestAltitudes.push_back(altitude);
         if (latestAltitudes.size() > MAX_LATEST_ALTITUDES) latestAltitudes.erase(latestAltitudes.begin());
-        
+
+        createTelemetryPacketStr(storageModule.packetCount, currentState, altitude, 0, 0);
+        storageModule.addTelemetryPacketToFlightLog(telPacketString);
+
         if (detectLaunch(altitude, acceleration)){
           Logger::log("Vehicle launched.");
           switchToState(STATE_PRE_APOGEE);
@@ -80,57 +84,68 @@ void loop() {
       break;
     case STATE_PRE_APOGEE:
       if (currMillis - lastMilis > 500) {
-          float altitude = sensorModule.getAltitude();
-          float acceleration = sensorModule.getAcceleration();
-          double gpsLat = sensorModule.gps.location.lat(); // TODO: We could avoid sensing GPS before apogee
-          double gpsLng = sensorModule.gps.location.lng();
+        float altitude = sensorModule.getAltitude();
+        float acceleration = sensorModule.getAcceleration();
 
-          latestAltitudes.push_back(altitude);
-          if (latestAltitudes.size() > MAX_LATEST_ALTITUDES) latestAltitudes.erase(latestAltitudes.begin());
+        latestAltitudes.push_back(altitude);
+        if (latestAltitudes.size() > MAX_LATEST_ALTITUDES) latestAltitudes.erase(latestAltitudes.begin());
 
-          createTelemetryPacketStr(communicationModule.packetCount, currentState, altitude, gpsLat, gpsLng); // TODO: Altitude should be float in telemetry packet?
-          storageModule.addTelemetryPacketToFlightLog(telPacketString);
-          communicationModule.sendTelemetryPacketToGround(telPacketString, TELEMETRY_PACKET_STRING_LENGTH);
+        createTelemetryPacketStr(storageModule.packetCount, currentState, altitude, 0, 0);
+        storageModule.addTelemetryPacketToFlightLog(telPacketString);
 
-          if (detectApogee(altitude, acceleration)){
-            Logger::log("Apogee reached.");
-            Logger::debug("Altitude: " + String(altitude));
-            switchToState(STATE_POST_APOGEE);
-          }
-          lastMilis = currMillis;
+        if (detectApogee(altitude, acceleration)){
+          Logger::log("Apogee reached.");
+          Logger::debug("Altitude: " + String(altitude));
+          switchToState(STATE_DROGUE_DEPLOYED);
+        }
+        lastMilis = currMillis;
       }
       break;
-    case STATE_POST_APOGEE:
+    case STATE_DROGUE_DEPLOYED:
       if (currMillis - lastMilis > 500) {
-            float altitude = sensorModule.getAltitude();
-            float acceleration = sensorModule.getAcceleration();
-            double gpsLat = sensorModule.gps.location.lat();
-            double gpsLng = sensorModule.gps.location.lng();
+        float altitude = sensorModule.getAltitude();
+        float acceleration = sensorModule.getAcceleration();
 
-            latestAltitudes.push_back(altitude);
-            if (latestAltitudes.size() > MAX_LATEST_ALTITUDES_AFTER_APOGEE) latestAltitudes.erase(latestAltitudes.begin());
+        latestAltitudes.push_back(altitude);
+        if (latestAltitudes.size() > MAX_LATEST_ALTITUDES_AFTER_APOGEE) latestAltitudes.erase(latestAltitudes.begin());
 
-            createTelemetryPacketStr(communicationModule.packetCount, currentState, altitude, gpsLat, gpsLng);
-            storageModule.addTelemetryPacketToFlightLog(telPacketString);
-            communicationModule.sendTelemetryPacketToGround(telPacketString, TELEMETRY_PACKET_STRING_LENGTH);
+        createTelemetryPacketStr(storageModule.packetCount, currentState, altitude, 0, 0);
+        storageModule.addTelemetryPacketToFlightLog(telPacketString);
 
-            if (detectLanding(altitude, acceleration)){
-              Logger::log("Vehicle landed :)");
-              switchToState(STATE_LANDED);
-            }
-            lastMilis = currMillis;
+        if (detectMainDeployment(altitude, acceleration)){
+          Logger::log("Main parachute altitude (300m) reached.");
+          switchToState(STATE_MAIN_DEPLOYED);
         }
+        lastMilis = currMillis;
+      }
+      break;
+    case STATE_MAIN_DEPLOYED:
+      if (currMillis - lastMilis > 500) {
+        float altitude = sensorModule.getAltitude();
+        float acceleration = sensorModule.getAcceleration();
+
+        latestAltitudes.push_back(altitude);
+        if (latestAltitudes.size() > MAX_LATEST_ALTITUDES_AFTER_APOGEE) latestAltitudes.erase(latestAltitudes.begin());
+
+        createTelemetryPacketStr(storageModule.packetCount, currentState, altitude, 0, 0);
+        storageModule.addTelemetryPacketToFlightLog(telPacketString);
+
+        if (detectLanding(altitude, acceleration)){
+          Logger::log("Vehicle landed :)");
+          switchToState(STATE_LANDED);
+        }
+        lastMilis = currMillis;
+      }
       break;
     case STATE_LANDED:
       if (currMillis - lastMilis > 2000) {
-            double gpsLat = sensorModule.gps.location.lat();
-            double gpsLng = sensorModule.gps.location.lng();
+        float altitude = sensorModule.getAltitude();
 
-            createTelemetryPacketStr(communicationModule.packetCount, currentState, 0, gpsLat, gpsLng);
-            communicationModule.sendTelemetryPacketToGround(telPacketString, TELEMETRY_PACKET_STRING_LENGTH);
+        createTelemetryPacketStr(storageModule.packetCount, currentState, 0, 0, 0);
+        storageModule.addTelemetryPacketToFlightLog(telPacketString);
 
-            lastMilis = currMillis;
-        }
+        lastMilis = currMillis;
+      }
       break;
   }
 }
@@ -139,9 +154,13 @@ void switchToState(int8_t newState) {
   currentState = newState;
   Logger::log("Switching to state: " + String(currentState));
   storageModule.saveCurrentState(currentState);
-  if (currentState == STATE_POST_APOGEE){
-    Logger::log("Deploying parachute");
-    electromechanicalModule.deployParachute();
+  switch (currentState) {
+    case STATE_DROGUE_DEPLOYED:
+      electromechanicalModule.deployDrogueParachute();
+      break;
+    case STATE_MAIN_DEPLOYED:
+      electromechanicalModule.deployMainParachute();
+      break;
   }
 }
 
@@ -163,12 +182,11 @@ bool detectApogee(float currAltitude, float currAccel) {
 bool detectLanding(float currAltitude, float currAccel) {
   Logger::debug("Detecting landing...");
   return latestAltitudes.back() < LANDING_ALTITUDE;
-  // if (latestAltitudes.size() < MAX_LATEST_ALTITUDES_AFTER_APOGEE) return false;
-  // for (int i = 1; i < latestAltitudes.size(); i++) {
-  //   if (!equals(latestAltitudes.at(i), latestAltitudes.at(i-1), LANDING_DETECTION_MARGIN))
-  //     return false;
-  // }
-  // return true;
+}
+
+bool detectMainDeployment(float currAltitude, float currAccel) {
+  Logger::debug("Detecting main deployment...");
+  return latestAltitudes.back() < MAIN_PARACHUTE_DEPLOYMENT_ALTITUDE;
 }
 
 bool biggerThan(float v1, float v2, float margin) {

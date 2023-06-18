@@ -8,6 +8,7 @@
 
 class StorageModule {
   Preferences preferences;
+  uint16_t packetCount = 0;
   public:
 
     void init(){
@@ -16,13 +17,13 @@ class StorageModule {
       // preferences.clear();
       
       Logger::log("Storage Module initialized.");
-
+      packetCount = loadTelemetryPacketCount();
     }
 
     uint8_t loadCurrentState(uint8_t defaultState) {
       uint8_t savedState = preferences.getUChar(CURRENT_STATE_KEY, 255); // 255 is the default value returned if no saved state is found
       if (savedState == 255) {
-        Logger::debug("No previous state found in memory, defaulting to STARTUP");
+        Logger::debug("No previous state found in memory, defaulting to " + String(defaultState));
         return defaultState;
       } else {
         Logger::debug("Found previous state in memory: " + String(savedState));
@@ -42,6 +43,8 @@ class StorageModule {
       packetCountBuff[5] = '\0';
 
       preferences.putString(packetCountBuff, telemetryPacket);
+      saveTelemetryPacketCount(packetCount);
+      packetCount++;
       Logger::debug("Saving telemetry packet to storage: " + String(telemetryPacket));
     }
 
