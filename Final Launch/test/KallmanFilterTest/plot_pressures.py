@@ -2,7 +2,7 @@ import sys
 import os
 import matplotlib.pyplot as plt
 
-metricsFilename = 'pressure_data.csv'
+metricsFilename = sys.argv[1]
 outputGraphsDir = 'tuvi.png'
 
 with open(metricsFilename, "r") as reader:
@@ -21,9 +21,9 @@ with open(metricsFilename, "r") as reader:
     print(line)
 
   # filename = metricsFilename.split('.')[0] + '.png'
-  plt.scatter(y_data, x_data1, s=0.6)
+  plt.plot(y_data, x_data1)
   plt.ylim((90000, 105000)) 
-  plt.scatter(y_data, x_data2, s=0.6)
+  plt.plot(y_data, x_data2)
   plt.xlabel('time (s)')
   plt.ylabel('Pressure (p)')
   # outputFilepath = os.path.join(outputDirectory, filename)
