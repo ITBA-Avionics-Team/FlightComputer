@@ -1,4 +1,6 @@
+
 #include <Adafruit_BMP280.h>
+#include "KalmanFilter.h"
 
 // BMP280 pins
 #define BMP_PIN 118 //0x76
@@ -12,9 +14,12 @@ class SensorModule {
   public:
   float bmpBasePressureHPa = 1008;
 
+  KalmanFilter pressureKalmanFilter = KalmanFilter(1, 1, 0.01);
+
   Adafruit_BMP280 bmp280;
 
   void init() {
+    Logger::log("Initializing sensor Module...");
 
     // Initialize BMP
     bmp280.begin(BMP_PIN);
@@ -35,7 +40,15 @@ class SensorModule {
   float getAltitude() {
     float alt = bmp280.readAltitude(bmpBasePressureHPa);
     float pressure = bmp280.readPressure();
-    Logger::debug("Getting altitude: " + String(alt));
+    float est_alt = pressureKalmanFilter.updateEstimate(alt);
+    Logger::debug("Getting altitude with Kalman filter applied: " + String(est_alt));
+    return est_alt;
+  }
+
+  float getRawAltitude() {
+    float alt = bmp280.readAltitude(bmpBasePressureHPa);
+    float pressure = bmp280.readPressure();
+    Logger::debug("Getting raw altitude: " + String(alt));
     return alt;
   }
 
