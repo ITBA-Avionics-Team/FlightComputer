@@ -11,13 +11,19 @@ class ElectromechanicalModule {
   public:
 
     void init() { 
+      // pinMode(GREEN_PIN, OUTPUT);
+      // pinMode(RED_PIN, OUTPUT);
       pinMode(PYRO_PIN_DROGUE, OUTPUT);
       pinMode(PYRO_PIN_MAIN, OUTPUT);
       Logger::log("Electromechanical Module initialized.");
     }
 
-   void deployDrogueParachute() {
+    void deployDrogueParachute() {
       Logger::log("Deploying drogue parachute...");
+      
+      // digitalWrite(GREEN_PIN, !digitalRead(GREEN_PIN));
+      // delay(500);
+      // digitalWrite(GREEN_PIN, !digitalRead(GREEN_PIN));
       
       digitalWrite(PYRO_PIN_DROGUE, HIGH); //FIRE!
       drogueDeployed = true;
@@ -26,6 +32,10 @@ class ElectromechanicalModule {
 
     void deployMainParachute() {
       Logger::log("Deploying main parachute...");
+      
+      // digitalWrite(GREEN_PIN, !digitalRead(RED_PIN));
+      // delay(500);
+      // digitalWrite(GREEN_PIN, !digitalRead(RED_PIN));
       
       digitalWrite(PYRO_PIN_MAIN, HIGH); //FIRE!
       mainDeployed = true;

@@ -1,5 +1,4 @@
 #include <Adafruit_BMP280.h>
-#include "TinyGPS++.h"
 
 // BMP280 pins
 #define BMP_PIN 118 //0x76
@@ -13,7 +12,6 @@ class SensorModule {
   public:
   float bmpBasePressureHPa = 1008;
 
-  TinyGPSPlus gps;
   Adafruit_BMP280 bmp280;
 
   void init() {

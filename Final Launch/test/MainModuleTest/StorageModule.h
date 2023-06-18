@@ -8,8 +8,8 @@
 
 class StorageModule {
   Preferences preferences;
-  uint16_t packetCount = 0;
   public:
+    uint16_t packetCount = 0;
 
     void init(){
       preferences.begin("lanzamiento00", false);
