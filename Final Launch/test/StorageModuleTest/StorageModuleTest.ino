@@ -17,7 +17,18 @@ void setup(){
 
 }
 
-void loop() {}
+void loop() {
+  testSaveCurrentState();
+  delay(1000);
+  testLoadCurrentState();
+  delay(1000);
+  testAddTelemetryPacketToFlightLog();
+  delay(1000);
+  testSaveTelemetryPacketCount();
+  delay(1000);
+  testLoadTelemetryPacketCount();
+  delay(1000);
+}
 
 void testSaveCurrentState() {
   Logger::log("Testing saveCurrentState()...");
@@ -37,7 +48,7 @@ void testAddTelemetryPacketToFlightLog() {
   Logger::log("Testing addTelemetryPacketToFlightLog()...");
   char* telemetryPacketTestValue = "10000,ST,9999,42.30402,34.30402";
   storageModule.addTelemetryPacketToFlightLog(telemetryPacketTestValue);
-  Logger::debug("Saving telemetry packet to storage: " + String(telemetryPacketTestValue));
+  Logger::debug("Saved telemetry packet to storage: " + String(telemetryPacketTestValue));
 }
 
 void testSaveTelemetryPacketCount() {
