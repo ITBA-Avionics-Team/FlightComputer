@@ -1,17 +1,13 @@
-#include "Logger.h"
-#include <Preferences.h>
+#include <nvs_flash.h>
 
-Preferences preferences;
+void setup() {
 
-void setup(){
-  Serial.begin(9600);
-  Logger::log("Connecting to preferences for topic lanzamiento00");
-  preferences.begin("lanzamiento00", false);
-  Logger::log("Clearing all data on topic lanzamiento00");
-  // Uncomment the line below to erase flash memory on init
-  preferences.clear();
+    nvs_flash_erase();      // erase the NVS partition and...
+    nvs_flash_init();       // initialize the NVS partition.
+    while (true);
+
 }
 
 void loop() {
-  
+   ;
 }
