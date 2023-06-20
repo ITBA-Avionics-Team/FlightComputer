@@ -12,27 +12,13 @@ void setup(){
   Logger::log("Connecting to preferences for topic lanzamiento00");
   preferences.begin("lanzamiento00", false);
 
-  bool telemetryPacketsRemaining = true;
-  int numOfEmptyPackets = 0;
-
-  // int packetCount = 0;
-
-  for (int packetCount = 0; packetCount < 1000; packetCount++) {
-    sprintf(packetCountString, "%05d", packetCount);
+  for (int i = 0; i < 16; i++) {
+    char blobIdStr[4];
+    sprintf(blobIdStr, "%03d", i);
     // Logger::log(packetCountString);
-    String telemetryPacket = preferences.getString(packetCountString, "NO-DATA");
-    Logger::log(telemetryPacket);
+    String telemetryPacketBlob = preferences.getString(blobIdStr, "NO-DATA");
+    Logger::log(telemetryPacketBlob);
   }
-  // while (telemetryPacketsRemaining) {
-  //   sprintf(packetCountString, "%05d", packetCount);
-  //   String telemetryPacket = preferences.getString(packetCountString, "NO-DATA");
-  //   Logger::log(telemetryPacket);
-  //   packetCount++;
-  //   if (telemetryPacket == "NO-DATA") {
-  //       numOfEmptyPackets++;
-  //       if (numOfEmptyPackets > 2) telemetryPacketsRemaining = false;
-  //   }
-  // }
 }
 
 void loop() {

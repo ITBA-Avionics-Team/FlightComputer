@@ -14,7 +14,7 @@
 #define STATE_LANDED 4
 
 // Telemetry packet related data
-#define TELEMETRY_PACKET_STRING_LENGTH 36
+#define TELEMETRY_PACKET_STRING_LENGTH 23
 
 static const char startupStr[2] = {'S', 'T'};
 static const char preApogeeStr[2] = {'P', 'R'};
@@ -72,7 +72,7 @@ void loop() {
         latestAltitudes.push_back(altitude);
         if (latestAltitudes.size() > MAX_LATEST_ALTITUDES) latestAltitudes.erase(latestAltitudes.begin());
 
-        createTelemetryPacketStr(storageModule.packetCount, currentState, altitude, 0, 0);
+        createTelemetryPacketStr(storageModule.packetCount, currentState, altitude, acceleration);
         storageModule.addTelemetryPacketToFlightLog(telPacketString);
 
         if (detectLaunch(altitude, acceleration)){
@@ -90,7 +90,7 @@ void loop() {
         latestAltitudes.push_back(altitude);
         if (latestAltitudes.size() > MAX_LATEST_ALTITUDES) latestAltitudes.erase(latestAltitudes.begin());
 
-        createTelemetryPacketStr(storageModule.packetCount, currentState, altitude, 0, 0);
+        createTelemetryPacketStr(storageModule.packetCount, currentState, altitude, acceleration);
         storageModule.addTelemetryPacketToFlightLog(telPacketString);
 
         if (detectApogee(altitude, acceleration)){
@@ -109,7 +109,7 @@ void loop() {
         latestAltitudes.push_back(altitude);
         if (latestAltitudes.size() > MAX_LATEST_ALTITUDES_AFTER_APOGEE) latestAltitudes.erase(latestAltitudes.begin());
 
-        createTelemetryPacketStr(storageModule.packetCount, currentState, altitude, 0, 0);
+        createTelemetryPacketStr(storageModule.packetCount, currentState, altitude, acceleration);
         storageModule.addTelemetryPacketToFlightLog(telPacketString);
 
         if (detectMainDeployment(altitude, acceleration)){
@@ -127,7 +127,7 @@ void loop() {
         latestAltitudes.push_back(altitude);
         if (latestAltitudes.size() > MAX_LATEST_ALTITUDES_AFTER_APOGEE) latestAltitudes.erase(latestAltitudes.begin());
 
-        createTelemetryPacketStr(storageModule.packetCount, currentState, altitude, 0, 0);
+        createTelemetryPacketStr(storageModule.packetCount, currentState, altitude, acceleration);
         storageModule.addTelemetryPacketToFlightLog(telPacketString);
 
         if (detectLanding(altitude, acceleration)){
@@ -141,7 +141,7 @@ void loop() {
       if (currMillis - lastMilis > 2000) {
         float altitude = sensorModule.getAltitude();
 
-        createTelemetryPacketStr(storageModule.packetCount, currentState, 0, 0, 0);
+        createTelemetryPacketStr(storageModule.packetCount, currentState, 0, 0);
         storageModule.addTelemetryPacketToFlightLog(telPacketString);
 
         lastMilis = currMillis;
@@ -201,10 +201,10 @@ bool equals(float v1, float v2, float margin) {
   return abs(v1 - v2) < margin;
 }
 
-// Format is <PACKET_COUNT>,<STATE>,<ALTITUDE>,<GPS_LATITUDE>,<GPS_LONGITUDE>
-// Example result: 10000,ST,9999.9, 42.30402, 34.30402
-//                 00021,PO,0604.2,-34.43555,-58.92193
-char* createTelemetryPacketStr(uint16_t packetCount, uint8_t currentState, float altitude, double gpsLat, double gpsLng) {
+// Format is <PACKET_COUNT>,<STATE>,<ALTITUDE>,<ACCELERATION>
+// Example result: 10000,ST,9999.9,9999.9
+//                 00021,PO,0604.2,9999.9
+char* createTelemetryPacketStr(uint16_t packetCount, uint8_t currentState, float altitude, float acceleration) {
   Logger::debug("Creating telemetry packet...");
 
   sprintf(telPacketString, "%05d", packetCount);
@@ -218,24 +218,28 @@ char* createTelemetryPacketStr(uint16_t packetCount, uint8_t currentState, float
   sprintf(telPacketString + 9, "%06.1f", altitude);
   
   telPacketString[15] = ',';
-  
-  if (gpsLat < 0){
-    sprintf(telPacketString + 16, "%08.5f", gpsLat);
-  } else {
-    telPacketString[16] = ' ';
-    sprintf(telPacketString + 17, "%08.5f", gpsLat);
-  }
-  
-  telPacketString[25] = ',';
 
-  if (gpsLng < 0) {
-    sprintf(telPacketString + 26, "%08.5f", gpsLng);
-  } else {
-    telPacketString[26] = ' ';
-    sprintf(telPacketString + 27, "%08.5f", gpsLng);    
-  }
+  sprintf(telPacketString + 16, "%06.1f", acceleration);
   
-  telPacketString[35] = '\0';
+  telPacketString[22] = '\0';
+  
+  // if (gpsLat < 0){
+  //   sprintf(telPacketString + 16, "%08.5f", gpsLat);
+  // } else {
+  //   telPacketString[16] = ' ';
+  //   sprintf(telPacketString + 17, "%08.5f", gpsLat);
+  // }
+  
+  // telPacketString[25] = ',';
+
+  // if (gpsLng < 0) {
+  //   sprintf(telPacketString + 26, "%08.5f", gpsLng);
+  // } else {
+  //   telPacketString[26] = ' ';
+  //   sprintf(telPacketString + 27, "%08.5f", gpsLng);    
+  // }
+  
+  // telPacketString[16] = '\0';
   
   return telPacketString;
 }

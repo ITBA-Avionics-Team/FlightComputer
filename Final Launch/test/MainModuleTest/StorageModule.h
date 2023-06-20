@@ -14,7 +14,7 @@ class StorageModule {
     void init(){
       preferences.begin("lanzamiento00", false);
       // Uncomment the line below to erase flash memory on init
-      // preferences.clear();
+      preferences.clear();
       
       Logger::log("Storage Module initialized.");
       packetCount = loadTelemetryPacketCount();
@@ -22,7 +22,7 @@ class StorageModule {
 
     uint8_t loadCurrentState(uint8_t defaultState) {
       uint8_t savedState = preferences.getUChar(CURRENT_STATE_KEY, 255); // 255 is the default value returned if no saved state is found
-      if (savedState == 255 || savedState > 4) {
+      if (savedState == 255) {
         Logger::debug("No previous state found in memory, defaulting to " + String(defaultState));
         return defaultState;
       } else {
@@ -38,15 +38,14 @@ class StorageModule {
 
     void addTelemetryPacketToFlightLog(char* telemetryPacket) {
       
-      char packetCountBuff[6];
-      memcpy( packetCountBuff, telemetryPacket, 5);
-      packetCountBuff[5] = '\0';
+      char blobIdStr[4];
+      sprintf(blobIdStr, "%03d", packetCount / 20);
 
-      preferences.putString(packetCountBuff, telemetryPacket);
-      // Logger::log(packetCountBuff);
+      String currentBlobContent = preferences.getString(blobIdStr, "");
+      preferences.putString(blobIdStr, currentBlobContent + String(telemetryPacket));
       saveTelemetryPacketCount(packetCount);
       packetCount++;
-      Logger::debug("Saving telemetry packet to storage: " + String(telemetryPacket));
+      Logger::debug("Saving telemetry packet to storage: " + String(telemetryPacket) + "- Blob id: " + String(blobIdStr));
     }
 
     uint16_t loadTelemetryPacketCount() {
