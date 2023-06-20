@@ -1,7 +1,7 @@
 #include <stdint.h>
 
 class Logger {
-  static const bool debugActivated = false;
+  static const bool debugActivated = true;
 
   public:
     static void debug(char* message) {
